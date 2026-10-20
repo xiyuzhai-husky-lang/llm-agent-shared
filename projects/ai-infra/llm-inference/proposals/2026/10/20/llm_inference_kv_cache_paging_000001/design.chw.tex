@@ -1,0 +1,6 @@
+\section{Pool, table, eviction}
+\verb|Pool| owns every block and a free list; \verb|Allocate| pops a block or reports that the pool is exhausted, and the scheduler then delays the sequence.
+
+\verb|Table| maps a sequence's logical block index to a physical block; appending a token past the last block's end allocates the next block.
+
+\verb|Evict| runs at the end of each step and returns the blocks of every finished sequence to the free list.

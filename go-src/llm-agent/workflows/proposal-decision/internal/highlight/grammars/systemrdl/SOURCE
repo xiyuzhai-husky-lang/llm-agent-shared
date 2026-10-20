@@ -1,0 +1,12 @@
+https://registry.npmjs.org/tree-sitter-systemrdl/-/tree-sitter-systemrdl-0.8.0.tgz
+sha512-QUAcwUFP+BFa8NEDSOoxDgTPOZEkN8BDVHpbJo5AIpoHLPRE2zEwNgzrJiZFKPsZb9P6uD1oI41WlU20kR/AJw==
+Unmodified upstream generated grammar, headers and license.
+highlights.scm and language.go are local adapter files.
+
+Upstream: https://github.com/SystemRDL/tree-sitter-systemrdl at bff4a08f0f00f71ca4e4023e966eba3b0656de49.
+This release has Node and Rust bindings, but no Go module/binding.
+go generate restores the exact C sources from the release into ignored files.
+Archive SHA-256: 90406486761e90f9df407eca270890edfd8512a35cf5158db3838e7f3cbc72f5
+The URL, selected archive entries and original file SHA-256 hashes are pinned in
+../generate/sources.go. No npm install or Rust compilation is required.
+LICENSE, highlights.scm and the Go adapter remain in the repository.

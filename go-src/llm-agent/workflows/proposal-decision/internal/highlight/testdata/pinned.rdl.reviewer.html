@@ -1,0 +1,11 @@
+<span class="syntax-Comment">// Register map with Unicode in comments: 中文 🐕 &lt;tag&gt; &amp;</span>
+<span class="syntax-OtherKeyword">addrmap</span> <span class="syntax-Variable">top</span> {
+  <span class="syntax-Comment">/* A comment crossing
+</span><span class="syntax-Comment">     a hunk boundary */</span>
+  <span class="syntax-OtherKeyword">default</span> <span class="syntax-Variable">regwidth</span> = <span class="syntax-Literal">32</span>;
+  <span class="syntax-OtherKeyword">reg</span> {
+    <span class="syntax-Variable">name</span> = <span class="syntax-Literal">&#34;Status &amp; &lt;control&gt;&#34;</span>;
+    <span class="syntax-OtherKeyword">field</span> { <span class="syntax-OtherKeyword">sw</span> = rw; <span class="syntax-OtherKeyword">hw</span> = r; <span class="syntax-Variable">reset</span> = <span class="syntax-Literal">1&#39;b0</span>; } <span class="syntax-Variable">enabled</span>[<span class="syntax-Literal">0</span>:<span class="syntax-Literal">0</span>];
+    <span class="syntax-OtherKeyword">field</span> { <span class="syntax-OtherKeyword">sw</span> = r; <span class="syntax-OtherKeyword">hw</span> = w; } <span class="syntax-Variable">value</span>[<span class="syntax-Literal">15</span>:<span class="syntax-Literal">8</span>];
+  } <span class="syntax-Variable">status</span> @ <span class="syntax-Literal">0x10</span>;
+};

@@ -1,0 +1,31 @@
+; Minimal local query for the installed elisp grammar.
+; No upstream highlights.scm was available in node_modules.
+"(" @punctuation.delimiter
+"and" @keyword
+"catch" @keyword
+"cond" @keyword
+"defconst" @keyword
+"defvar" @keyword
+"function" @keyword
+"if" @keyword
+"interactive" @keyword
+"lambda" @keyword
+"let" @keyword
+"or" @keyword
+"progn" @keyword
+"quote" @keyword
+"setq" @keyword
+"while" @keyword
+")" @punctuation.delimiter
+"defun" @keyword
+"defsubst" @keyword
+"defmacro" @keyword
+(string) @string
+"nil" @keyword
+"t" @keyword
+"," @punctuation.delimiter
+"[" @punctuation.delimiter
+"]" @punctuation.delimiter
+(comment) @comment
+(float) @number
+(integer) @number

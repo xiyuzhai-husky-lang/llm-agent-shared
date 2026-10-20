@@ -1,0 +1,16 @@
+{
+  "format": 4,
+  "base": "a71b9e4c2d5f8a0b3c6e1d4f7a9b2c5e8d0f1a23",
+  "kind": "complete",
+  "surfaces": {
+    "Problem": "updated",
+    "Scope": "updated",
+    "Diagnosis": "updated",
+    "Related": "updated",
+    "Criteria": "updated",
+    "Design": "updated",
+    "Implementation Plan": "updated",
+    "Tests": "updated",
+    "Diff": "updated"
+  }
+}

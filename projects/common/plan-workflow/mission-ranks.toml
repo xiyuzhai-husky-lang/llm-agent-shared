@@ -1,0 +1,53 @@
+# Plan workflow mission ranks: `plan-workflow start --rank <rank>` holds a plan run to its rank's row.
+# The columns mean what they mean in projects/common/orchestrator/mission-ranks.toml. `model` names a Codex model
+# (gpt-6.1-sol, gpt-6-astra), which runs the roles with `codex exec`, or a Claude model (claude-fable-5-1,
+# claude-opus-5-5), which runs them with Claude Code; Claude Code takes the efforts low through max.
+
+[D]
+deadline_minutes = 15
+role_round_cap = 1
+total_round_cap = 3
+model = "gpt-6-astra"
+reasoning_effort = "low"
+
+[C]
+deadline_minutes = 30
+role_round_cap = 2
+total_round_cap = 5
+model = "gpt-6-astra"
+reasoning_effort = "high"
+
+[B]
+deadline_minutes = 60
+role_round_cap = 3
+total_round_cap = 7
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[A]
+deadline_minutes = 120
+role_round_cap = 4
+total_round_cap = 9
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[S]
+deadline_minutes = 240
+role_round_cap = 5
+total_round_cap = 10
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[SS]
+deadline_minutes = 480
+role_round_cap = 6
+total_round_cap = 12
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[SSS]
+deadline_minutes = 960
+role_round_cap = 7
+total_round_cap = 14
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"

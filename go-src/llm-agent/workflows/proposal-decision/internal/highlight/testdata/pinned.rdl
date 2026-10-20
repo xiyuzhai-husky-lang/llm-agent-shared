@@ -1,0 +1,11 @@
+// Register map with Unicode in comments: 中文 🐕 <tag> &
+addrmap top {
+  /* A comment crossing
+     a hunk boundary */
+  default regwidth = 32;
+  reg {
+    name = "Status & <control>";
+    field { sw = rw; hw = r; reset = 1'b0; } enabled[0:0];
+    field { sw = r; hw = w; } value[15:8];
+  } status @ 0x10;
+};

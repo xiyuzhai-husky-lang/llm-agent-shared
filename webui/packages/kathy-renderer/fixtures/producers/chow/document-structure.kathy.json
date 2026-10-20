@@ -1,0 +1,271 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "plain_letter",
+        "letter": "u"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "n"
+      },
+      {
+        "kind": "attach",
+        "base": 0,
+        "scripts": [
+          {
+            "script_kind": "subscript",
+            "script": {
+              "kind": "subscript",
+              "ast": 1
+            }
+          }
+        ]
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "a"
+      },
+      {
+        "kind": "alignment_marker",
+        "alignment_marker": "ampersand"
+      },
+      {
+        "kind": "punctuation",
+        "value": "="
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "b"
+      },
+      {
+        "kind": "alignment_marker",
+        "alignment_marker": "ampersand"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "c"
+      },
+      {
+        "kind": "alignment_marker",
+        "alignment_marker": "ampersand"
+      },
+      {
+        "kind": "punctuation",
+        "value": "="
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "d"
+      },
+      {
+        "kind": "line_break"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "alignment_marker",
+        "alignment_marker": "ampersand"
+      },
+      {
+        "kind": "punctuation",
+        "value": "="
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "word",
+        "value": "Sequence"
+      },
+      {
+        "kind": "word",
+        "value": "criterion"
+      },
+      {
+        "kind": "item"
+      },
+      {
+        "kind": "word",
+        "value": "The"
+      },
+      {
+        "kind": "word",
+        "value": "first"
+      },
+      {
+        "kind": "word",
+        "value": "claim"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "item"
+      },
+      {
+        "kind": "word",
+        "value": "The"
+      },
+      {
+        "kind": "word",
+        "value": "second"
+      },
+      {
+        "kind": "word",
+        "value": "claim"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "label",
+        "arguments": [
+          {
+            "kind": "required",
+            "data": {
+              "kind": "name",
+              "value": "sequenceCriterion"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "word",
+        "value": "A"
+      },
+      {
+        "kind": "word",
+        "value": "sequence"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 2,
+          "end": 3
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "converges"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "new_paragraph"
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "itemize",
+        "arguments": [],
+        "asts": {
+          "kind": "rose",
+          "range": {
+            "start": 2,
+            "end": 12
+          }
+        }
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "alignat",
+        "arguments": [
+          {
+            "kind": "required",
+            "data": {
+              "kind": "wild",
+              "value": "2"
+            }
+          }
+        ],
+        "asts": {
+          "kind": "math",
+          "range": {
+            "start": 3,
+            "end": 13
+          }
+        }
+      },
+      {
+        "kind": "environment",
+        "starred": true,
+        "environment_name": "alignat",
+        "arguments": [
+          {
+            "kind": "required",
+            "data": {
+              "kind": "wild",
+              "value": "1"
+            }
+          }
+        ],
+        "asts": {
+          "kind": "math",
+          "range": {
+            "start": 13,
+            "end": 17
+          }
+        }
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "theorem",
+        "arguments": [
+          {
+            "kind": "optional",
+            "data": {
+              "kind": "rose",
+              "range": {
+                "start": 0,
+                "end": 2
+              }
+            }
+          }
+        ],
+        "asts": {
+          "kind": "rose",
+          "range": {
+            "start": 12,
+            "end": 20
+          }
+        }
+      },
+      {
+        "kind": "new_paragraph"
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "proof",
+        "arguments": [],
+        "asts": {
+          "kind": "rose",
+          "range": {
+            "start": 20,
+            "end": 22
+          }
+        }
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 22,
+    "end": 25
+  }
+}

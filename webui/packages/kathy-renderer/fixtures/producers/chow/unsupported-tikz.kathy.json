@@ -1,0 +1,63 @@
+{
+  "arena": {
+    "math": [],
+    "rose": [
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "tikzpicture",
+        "arguments": [],
+        "asts": {
+          "kind": "tikz",
+          "range": {
+            "start": 4,
+            "end": 7
+          }
+        }
+      }
+    ],
+    "tikz": [
+      {
+        "kind": "digit",
+        "value": "0"
+      },
+      {
+        "kind": "comma"
+      },
+      {
+        "kind": "digit",
+        "value": "0"
+      },
+      {
+        "kind": "word",
+        "value": "A"
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "tkzDefPoint"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "par",
+        "asts": {
+          "start": 0,
+          "end": 3
+        },
+        "right_delimiter": "par"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "curl",
+        "asts": {
+          "start": 3,
+          "end": 4
+        },
+        "right_delimiter": "curl"
+      }
+    ]
+  },
+  "body": {
+    "start": 0,
+    "end": 1
+  }
+}

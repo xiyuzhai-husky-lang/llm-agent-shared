@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:," />
+<title>Plan review</title>
+<style>
+  :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", sans-serif; }
+  body { margin: 0; background: #fafafa; color: #1f2328; display: flex; flex-direction: column; height: 100vh; }
+  header { display: flex; align-items: center; gap: 16px; padding: 10px 16px; border-bottom: 1px solid #d8dbe0; background: #fff; }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  header .status { font-size: 13px; color: #57606a; }
+  nav { display: flex; gap: 4px; padding: 0 16px; border-bottom: 1px solid #d8dbe0; background: #fff; }
+  nav button { border: 0; border-bottom: 2px solid transparent; background: none; padding: 8px 12px; font-size: 14px; cursor: pointer; color: #57606a; }
+  nav button[aria-selected="true"] { color: #1f2328; border-bottom-color: #c2410c; font-weight: 600; }
+  nav .count { margin-left: 6px; font-size: 12px; color: #57606a; }
+  .workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 500px; }
+  .workspace-main { display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; min-height: 0; overflow: hidden; }
+  main { min-height: 0; overflow: auto; }
+  aside { display: grid; grid-template-rows: minmax(0, 1fr) auto auto; min-width: 0; min-height: 0; border-left: 1px solid #d8dbe0; background: #f8f8f5; }
+  .record { overflow: auto; padding: 14px; }
+  .record .entry { padding: 14px 16px; border: 1px solid #d8ddd9; border-right: 4px solid #4d9475; border-radius: 5px; background: #f4faf6; }
+  .record .entry header { display: flex; gap: 7px; align-items: baseline; margin-bottom: 9px; font-size: 12px; }
+  .record .entry p { margin: 0; font-size: 13px; white-space: pre-wrap; }
+  .record .empty { color: #737d77; font-size: 12px; padding: 4px 0; }
+  iframe { border: 0; width: 100%; height: 100%; display: block; background: #fff; }
+  .doubts { max-width: 960px; margin: 0 auto; padding: 16px; }
+  .doubt, .note { background: #fff; border: 1px solid #d8dbe0; border-radius: 6px; padding: 12px 14px; margin-bottom: 12px; }
+  .doubt h3, .note h3 { margin: 0 0 6px; font-size: 13px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+  .doubt .where { font-size: 12px; color: #57606a; margin-bottom: 6px; font-family: ui-monospace, Menlo, monospace; }
+  .doubt p, .note p { margin: 4px 0; font-size: 14px; white-space: pre-wrap; }
+  .doubt .answer { border-left: 3px solid #d8dbe0; padding-left: 10px; color: #3d444d; }
+  .disposition { font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 3px; }
+  .disposition.fixed { color: #18573a; background: #e2f1e7; }
+  .disposition.declined { color: #73570d; background: #f4edcf; }
+  .disposition.unanswered { color: #842f2a; background: #f6e4e2; }
+  .empty { color: #57606a; font-size: 14px; padding: 16px 0; }
+  .verdict { padding: 8px 12px; border-top: 1px solid #e0e3df; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
+  .composer { display: grid; gap: 8px; padding: 12px; border-top: 1px solid #d9ddda; background: #eef0ee; }
+  .composer textarea { display: block; width: 100%; box-sizing: border-box; min-height: 88px; resize: vertical; padding: 11px 12px; border: 1px solid #aeb5b0; border-radius: 4px; background: #fff; font: inherit; font-size: 13px; line-height: 1.5; }
+  .review-permission-action { display: flex; align-items: center; justify-content: center; min-height: 32px; border: 1px solid; border-radius: 4px; padding: 6px 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .review-permission-action:disabled { opacity: 0.45; cursor: default; }
+  .review-permission-action.accept { color: #18573a; border-color: #72a887; background: #f5fbf7; }
+  .review-permission-action.modify { color: #73570d; border-color: #bda65f; background: #fffcf1; }
+  .review-permission-action.reject { color: #842f2a; border-color: #c48e89; background: #fff8f7; }
+  .review-permission { font-size: 13px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
+  .review-permission.accept { color: #18573a; background: #e2f1e7; }
+  .review-permission.modify { color: #73570d; background: #f4edcf; }
+  .review-permission.reject { color: #842f2a; background: #f6e4e2; }
+  .error { color: #842f2a; font-size: 13px; }
+  /* The Plan tab: the plan page on the left, the declared library change on the right. */
+  .plan-view { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .plan-view[hidden] { display: none; }
+  .plan-view iframe { border-right: 1px solid #d8dbe0; }
+  /* The change, rendered like a proposal Diff tab file (colours from webui/packages/proposal-diff-tab/src/tab.css). */
+  .change {
+    --diff-background-color: #ffffff;
+    --diff-text-color: #26313a;
+    --diff-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --diff-gutter-insert-background-color: #c8ebd2;
+    --diff-gutter-delete-background-color: #f2c7c5;
+    --diff-code-insert-background-color: #e5f5e9;
+    --diff-code-delete-background-color: #fbe8e7;
+    min-width: 0; min-height: 0; overflow: auto; background: #f6f8fa; padding: 14px;
+  }
+  .change-file { border: 1px solid #d0d7de; border-radius: 6px; background: var(--diff-background-color); overflow: hidden; }
+  .change-file > header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #d0d7de; background: #f6f8fa; }
+  .change-file[data-kind="add_command"] > header { background: #e9f5ec; box-shadow: inset 4px 0 #4f8f62; }
+  .change-file[data-kind="modify_command"] > header { background: #f7f2e1; box-shadow: inset 4px 0 #a79a70; }
+  .change-file[data-kind="delete_command"] > header { background: #f8e5e3; box-shadow: inset 4px 0 #b8524a; }
+  .change-file > header code { font: 12px/18px var(--diff-font-family); color: #24292f; overflow-wrap: anywhere; }
+  .change-badge { flex: none; font-size: 11px; font-weight: 700; letter-spacing: .02em; padding: 2px 8px; border-radius: 10px; border: 1px solid; }
+  .change-badge.add_command { color: #18573a; border-color: #72a887; background: #f5fbf7; }
+  .change-badge.modify_command { color: #73570d; border-color: #bda65f; background: #fffcf1; }
+  .change-badge.delete_command { color: #842f2a; border-color: #c48e89; background: #fff8f7; }
+  .change-badge.other { color: #3d444d; border-color: #b9c0c7; background: #fff; }
+  .change-notice { padding: 6px 12px; font-size: 12px; color: #57606a; border-bottom: 1px solid #e6edef; }
+  .change-description { margin: 0; padding: 14px 16px; font-size: 14px; line-height: 1.55; white-space: pre-wrap; }
+  .change-empty { color: #57606a; font-size: 14px; padding: 4px 2px; }
+  .diff-line-key { display: grid; grid-template-columns: 44px 44px 20px 1fr; font: 12px/21px var(--diff-font-family); color: #829097; border-bottom: 1px solid #e6edef; background: #fafcfc; }
+  .diff-line-key span { text-align: right; padding-right: 8px; }
+  .diff-line-key span:last-child { text-align: left; padding-left: 2px; }
+  .diff-hunk-heading { padding: 3px 12px; font: 12px/21px var(--diff-font-family); background: #f1f8ff; color: #57606a; border-top: 1px solid #e6edef; border-bottom: 1px solid #e6edef; }
+  .diff-unchanged { display: block; width: 100%; border: 0; border-top: 1px solid #e6edef; border-bottom: 1px solid #e6edef; padding: 3px 12px; text-align: left; font: 12px/21px var(--diff-font-family); color: #57606a; background: #f6f8fa; cursor: pointer; }
+  .diff-unchanged:hover { background: #eaeef2; color: #24292f; }
+  .diff-line { display: grid; grid-template-columns: 44px 44px 20px minmax(0, 1fr); min-height: 21px; font: 12px/21px var(--diff-font-family); color: var(--diff-text-color); }
+  .diff-line > .diff-gutter { padding: 0 8px 0 0; text-align: right; color: #94a1a7; user-select: none; -webkit-user-select: none; }
+  .diff-line > .diff-marker { text-align: center; user-select: none; -webkit-user-select: none; }
+  .diff-line > .diff-code { padding: 0 12px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; color: #37494f; }
+  .diff-line.insert { background: #ebf8ee; }
+  .diff-line.insert > .diff-gutter { background: #e1f2e5; color: #648c70; }
+  .diff-line.insert > .diff-marker { color: #4f8062; }
+  .diff-line.delete { background: #fff0ee; }
+  .diff-line.delete > .diff-gutter { background: #fbe4e1; color: #bc7068; }
+  .diff-line.delete > .diff-marker { color: #bc7068; }
+  .hl-Attribute { color: #383a42; }
+  .hl-Comment { color: #a0a1a7; }
+  .hl-ControlFlowKeyword { color: #a626a4; }
+  .hl-OtherKeyword { color: #a626a4; }
+  .hl-Field { color: #383a42; }
+  .hl-Punctuation { color: #383a42; }
+  .hl-Parameter { color: #e45649; }
+  .hl-Variable { color: #4078f2; }
+  .hl-LoopVariable { color: #383a42; }
+  .hl-ModuleEntity { color: #383a42; }
+  .hl-TypeEntity { color: #c18401; }
+  .hl-TypeAlias { color: #c18401; }
+  .hl-TypeVar { color: #c18401; }
+  .hl-FunctionEntity { color: #4078f2; }
+  .hl-ValEntity { color: #0184bc; }
+  .hl-TraitEntity { color: #a626a4; }
+  .hl-TypeVariantEntity { color: #c18401; }
+  .hl-MethodEntity { color: #4078f2; }
+  .hl-MemoizedFieldEntity { color: #383a42; }
+  .hl-ImplicitParameter { color: #383a42; }
+  .hl-Method { color: #4078f2; }
+  .hl-Literal { color: #986801; }
+  .hl-HtmlTagKind { color: #50a14f; }
+  .hl-WordOpr { color: #383a42; }
+  .hl-SelfType { color: #0184bc; }
+  .hl-SelfValue { color: #e45649; }
+  .hl-HtmlFunctionIdent { color: #4078f2; }
+  .hl-HtmlPropertyIdent { color: #c18401; }
+  .hl-Todo { color: #e45649; }
+  .hl-Unreachable { color: #e45649; }
+  .hl-Ident { color: #383a42; }
+  .hl-Label { color: #50a14f; }
+  .hl-Error { color: #e45649; }
+  .hl-DefEntity { color: #a626a4; }
+  .hl-StaticMutEntity { color: #a626a4; }
+  .hl-StaticVarEntity { color: #a626a4; }
+  .hl-TermicEntity { color: #0184bc; }
+  .change-explanation { margin-top: 16px; padding: 4px 2px; }
+  .change-explanation h3 { margin: 14px 0 6px; font-size: 13px; font-weight: 600; color: #3d444d; }
+  .change-explanation p { margin: 0; font-size: 14px; line-height: 1.7; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<header><h1 id="title">Plan</h1><span class="status" id="status"></span></header>
+<div class="workspace">
+<div class="workspace-main">
+<nav role="tablist">
+  <button role="tab" id="tab-plan" aria-selected="true">Plan</button>
+  <button role="tab" id="tab-doubts" aria-selected="false">Doubts<span class="count" id="doubt-count"></span></button>
+</nav>
+<main>
+  <div class="plan-view" id="plan">
+    <iframe id="plan-page" title="Plan"></iframe>
+    <section class="change" id="change" aria-label="Library change"></section>
+  </div>
+  <section class="doubts" id="doubts" hidden></section>
+</main>
+</div>
+<aside aria-label="Review">
+  <section class="record" id="record"></section>
+  <section class="verdict" id="verdict" hidden></section>
+  <section class="composer" id="composer" hidden></section>
+</aside>
+</div>
+<script>
+// Display only: every value shown here is computed by the plan workflow server (/api/plans/<instance>/review).
+const instance = decodeURIComponent(location.pathname.split('/').filter(Boolean)[1])
+const api = `/api/plans/${encodeURIComponent(instance)}`
+const el = (tag, attributes = {}, ...children) => {
+  const node = document.createElement(tag)
+  for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value)
+  node.append(...children)
+  return node
+}
+const select = (name) => {
+  document.getElementById('tab-plan').setAttribute('aria-selected', String(name === 'plan'))
+  document.getElementById('tab-doubts').setAttribute('aria-selected', String(name === 'doubts'))
+  document.getElementById('plan').hidden = name !== 'plan'
+  document.getElementById('doubts').hidden = name !== 'doubts'
+}
+document.getElementById('tab-plan').onclick = () => { history.replaceState(null, '', '#plan'); select('plan') }
+document.getElementById('tab-doubts').onclick = () => { history.replaceState(null, '', '#doubts'); select('doubts') }
+select(location.hash === '#doubts' ? 'doubts' : 'plan')
+document.getElementById('plan-page').src = `/plans/${encodeURIComponent(instance)}/plan/`
+
+const changeLabels = {add_command: 'Add command', modify_command: 'Modify command', delete_command: 'Delete command', other: 'Other change'}
+const diffLine = (line) => el('div', {class: `diff-line ${line.kind}`},
+  el('span', {class: 'diff-gutter'}, line.old === null ? '' : String(line.old)),
+  el('span', {class: 'diff-gutter'}, line.new === null ? '' : String(line.new)),
+  el('span', {class: 'diff-marker'}, line.kind === 'insert' ? '+' : line.kind === 'delete' ? '−' : ''),
+  el('span', {class: 'diff-code'}, ...line.spans.map((span) => span.token_class === null ? span.text : el('span', {class: `hl-${span.token_class}`}, span.text))))
+const renderChange = (change) => {
+  const container = document.getElementById('change')
+  container.replaceChildren()
+  if (change === null) {
+    container.append(el('p', {class: 'change-empty'}, 'The plan declares no library change.'))
+    return
+  }
+  const file = el('article', {class: 'change-file', 'data-kind': change.kind})
+  const header = el('header', {}, el('span', {class: `change-badge ${change.kind}`}, changeLabels[change.kind]))
+  file.append(header)
+  container.append(file)
+  if (change.kind === 'other') {
+    file.append(el('p', {class: 'change-description'}, change.description))
+    return
+  }
+  header.append(el('code', {}, change.library_file))
+  const document_ = change.document
+  if (document_.notice !== null) file.append(el('div', {class: 'change-notice'}, document_.notice))
+  if (document_.body_notice !== null) file.append(el('div', {class: 'change-notice'}, document_.body_notice))
+  file.append(el('div', {class: 'diff-line-key'}, el('span', {}, 'old'), el('span', {}, 'new'), el('span', {}), el('span', {})))
+  for (const block of document_.blocks) {
+    if (block.hunk !== null) {
+      file.append(el('div', {class: 'diff-hunk-heading'}, block.hunk), ...block.lines.map(diffLine))
+      continue
+    }
+    // Unchanged lines outside every hunk start folded, as in the proposal Diff tab.
+    const unfold = el('button', {type: 'button', class: 'diff-unchanged'}, `⋯ ${block.lines.length} unchanged lines`)
+    unfold.onclick = () => unfold.replaceWith(...block.lines.map(diffLine))
+    file.append(unfold)
+  }
+  container.append(el('section', {class: 'change-explanation'},
+    el('h3', {}, '这是什么'), el('p', {}, change.what_this_is),
+    el('h3', {}, '为什么需要'), el('p', {}, change.why_this_is_needed)))
+}
+
+const render = (view) => {
+  document.title = `Plan · ${view.instance}`
+  document.getElementById('title').textContent = `${view.instance} · round ${view.round}`
+  document.getElementById('status').textContent = view.status
+  document.getElementById('doubt-count').textContent = String(view.doubts.length + view.notes.length)
+  renderChange(view.change)
+  const doubts = document.getElementById('doubts')
+  doubts.replaceChildren()
+  if (view.question) doubts.append(el('div', {class: 'note'}, el('h3', {}, 'Planner question'), el('p', {}, view.question)))
+  if (view.doubts.length + view.notes.length === 0) doubts.append(el('p', {class: 'empty'}, 'No doubts.'))
+  for (const doubt of view.doubts) {
+    const card = el('div', {class: 'doubt'},
+      el('h3', {}, doubt.heading, el('span', {class: `disposition ${doubt.disposition}`}, doubt.disposition)),
+      el('div', {class: 'where'}, `${doubt.location} · ${doubt.rule}`),
+      el('p', {}, doubt.why))
+    if (doubt.answer !== null) card.append(el('p', {class: 'answer'}, doubt.answer))
+    doubts.append(card)
+  }
+  for (const note of view.notes) doubts.append(el('div', {class: 'note'}, el('h3', {}, note.heading), el('p', {}, note.text)))
+  const record = document.getElementById('record')
+  const verdict = document.getElementById('verdict')
+  const composer = document.getElementById('composer')
+  record.replaceChildren()
+  verdict.replaceChildren()
+  composer.replaceChildren()
+  if (view.verdict !== null) {
+    const entry = el('div', {class: 'entry'}, el('header', {}, el('strong', {}, 'User'), el('span', {class: `review-permission ${view.verdict.kind.toLowerCase()}`}, view.verdict.kind)))
+    if (view.verdict.text) entry.append(el('p', {}, view.verdict.text))
+    record.append(entry)
+  } else {
+    record.append(el('p', {class: 'empty'}, 'No verdict yet.'))
+  }
+  verdict.hidden = !view.awaits_verdict
+  composer.hidden = !view.awaits_verdict
+  if (!view.awaits_verdict) return
+  const text = el('textarea', {placeholder: 'Modify 时写给 planner 的话'})
+  const error = el('span', {class: 'error'})
+  const send = async (kind) => {
+    for (const button of verdict.querySelectorAll('button')) button.disabled = true
+    const response = await fetch(`${api}/verdict`, {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({kind, text: text.value})})
+    if (!response.ok) {
+      error.textContent = (await response.json()).error
+      for (const button of verdict.querySelectorAll('button')) button.disabled = false
+      return
+    }
+    await load()
+  }
+  const button = (kind, label) => {
+    const node = el('button', {type: 'button', class: `review-permission-action ${kind}`}, label)
+    node.onclick = () => send(kind)
+    return node
+  }
+  verdict.append(button('accept', 'Accept'), button('modify', 'Modify'), button('reject', 'Reject'))
+  composer.append(text, error)
+}
+const load = async () => {
+  const response = await fetch(`${api}/review`)
+  if (!response.ok) {
+    document.getElementById('status').textContent = (await response.json()).error
+    return
+  }
+  render(await response.json())
+}
+load()
+</script>
+</body>
+</html>

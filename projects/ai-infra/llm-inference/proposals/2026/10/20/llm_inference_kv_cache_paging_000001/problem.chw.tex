@@ -1,0 +1,4 @@
+\section{One cache per sequence wastes memory}
+Each sequence owns a key-value cache sized for its maximum length, so memory is reserved for tokens that are never generated and the batch stays small. Starting commit \verb|a71b9e4| has no sharing between sequences.
+
+This proposal pages the cache: fixed-size blocks from one pool, a block table per sequence, and eviction when a sequence finishes.

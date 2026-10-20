@@ -1,0 +1,19 @@
+<span class="syntax-OtherKeyword">import</span> <span class="syntax-Variable">Mathlib</span>
+
+<span class="syntax-Comment">/- Outer comment
+</span><span class="syntax-Comment">   /- nested 中文 🐕 &lt;tag&gt; &amp; -/</span>
+   still a comment <span class="syntax-Punctuation">-</span><span class="syntax-Punctuation">/</span>
+<span class="syntax-OtherKeyword">namespace</span> <span class="syntax-Variable">Demo</span>
+
+<span class="syntax-OtherKeyword">def</span> <span class="syntax-FunctionEntity">greeting</span> <span class="syntax-Punctuation">:</span> <span class="syntax-FunctionEntity">String</span> <span class="syntax-Punctuation">:=</span> <span class="syntax-Literal">&#34;hello </span><span class="syntax-Literal">\&#34;</span><span class="syntax-Literal">world</span><span class="syntax-Literal">\&#34;</span><span class="syntax-Literal">&#34;</span>
+<span class="syntax-OtherKeyword">def</span> <span class="syntax-FunctionEntity">twice</span> <span class="syntax-Punctuation">(</span><span class="syntax-Variable">n</span> <span class="syntax-Punctuation">:</span> <span class="syntax-Variable">Nat</span><span class="syntax-Punctuation">)</span> <span class="syntax-Punctuation">:</span> <span class="syntax-FunctionEntity">Nat</span> <span class="syntax-Punctuation">:=</span> <span class="syntax-Variable">n</span> <span class="syntax-Punctuation">+</span> <span class="syntax-Variable">n</span>
+
+<span class="syntax-OtherKeyword">theorem</span> <span class="syntax-FunctionEntity">identity</span> <span class="syntax-Punctuation">(</span><span class="syntax-Variable">α</span> <span class="syntax-Punctuation">:</span> <span class="syntax-Variable">Type</span><span class="syntax-Punctuation">)</span> <span class="syntax-Punctuation">(</span><span class="syntax-Variable">x</span> <span class="syntax-Punctuation">:</span> <span class="syntax-Variable">α</span><span class="syntax-Punctuation">)</span> <span class="syntax-Punctuation">:</span> <span class="syntax-Variable">x</span> <span class="syntax-Punctuation">=</span> <span class="syntax-Variable">x</span> <span class="syntax-Punctuation">:=</span> <span class="syntax-FunctionEntity">by
+</span><span class="syntax-FunctionEntity">  </span><span class="syntax-FunctionEntity">rfl</span><span class="syntax-FunctionEntity">
+</span>
+<span class="syntax-Comment">-- Unicode binders and operators</span>
+<span class="syntax-OtherKeyword">example</span> <span class="syntax-Punctuation">(</span><span class="syntax-Variable">n</span> <span class="syntax-Punctuation">:</span> <span class="syntax-Variable">Nat</span><span class="syntax-Punctuation">)</span> <span class="syntax-Punctuation">:</span> <span class="syntax-Punctuation">∀</span> <span class="syntax-Variable">x</span> <span class="syntax-Punctuation">:</span> <span class="syntax-Variable">Nat</span><span class="syntax-Punctuation">,</span> <span class="syntax-Variable">x</span> <span class="syntax-Punctuation">≤</span> <span class="syntax-Variable">x</span> <span class="syntax-Punctuation">:=</span> <span class="syntax-FunctionEntity">by
+</span><span class="syntax-FunctionEntity">  </span><span class="syntax-FunctionEntity">intro </span><span class="syntax-Variable">x</span><span class="syntax-FunctionEntity">
+</span><span class="syntax-FunctionEntity">  exact </span><span class="syntax-FunctionEntity">Nat</span><span class="syntax-Punctuation">.</span><span class="syntax-FunctionEntity">le_refl</span><span class="syntax-FunctionEntity"> </span><span class="syntax-FunctionEntity">x</span><span class="syntax-FunctionEntity">
+</span>
+<span class="syntax-OtherKeyword">end</span> <span class="syntax-Variable">Demo</span>

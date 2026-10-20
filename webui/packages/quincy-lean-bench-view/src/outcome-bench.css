@@ -1,0 +1,6 @@
+.lean-bench-view.lean-bench-outcome { display: block; color: #282828; background: #f5f5f5; font: 12px/1.4 system-ui, sans-serif; --lean-bench-ink: #282828; --lean-bench-muted: #666; --lean-bench-rule: #bbb; --lean-bench-explorer-rule: #aaa; --lean-bench-paper: #f5f5f5; --lean-bench-wash: #ededed; --lean-bench-header: #eee; --lean-bench-link: #333; color-scheme: light; }
+.lean-bench-outcome .lean-bench-fields { gap: 0; margin-bottom: 6px; }
+.lean-bench-outcome .lean-bench-fields > div { grid-template-columns: 95px minmax(0, 1fr); gap: 6px; padding: 3px 0; border-bottom: 1px solid #ddd; }
+.lean-bench-outcome .lean-bench-fields dd { font-family: ui-monospace, monospace; }
+.lean-bench-outcome .lean-bench-note { margin: 4px 0; line-height: 1.4; }
+.lean-bench-outcome .lean-bench-tree-details { margin: 0; padding: 4px; border: 0; background: transparent; }

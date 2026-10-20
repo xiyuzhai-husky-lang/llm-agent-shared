@@ -1,0 +1,30 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "plain_letter",
+        "letter": "a"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 0,
+          "end": 1
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "converges"
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 0,
+    "end": 2
+  }
+}

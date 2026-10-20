@@ -1,0 +1,71 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "verbatim_command",
+        "command_name": "verb",
+        "starred": false,
+        "delimiter": "|",
+        "body": "y+1"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "word",
+        "value": "Inline"
+      },
+      {
+        "kind": "verbatim_command",
+        "command_name": "verb",
+        "starred": false,
+        "delimiter": "|",
+        "body": "x_{1}"
+      },
+      {
+        "kind": "word",
+        "value": "and"
+      },
+      {
+        "kind": "word",
+        "value": "math"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 0,
+          "end": 1
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "new_paragraph"
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "lstlisting",
+        "arguments": [],
+        "asts": {
+          "kind": "verbatim",
+          "text": "let x = \"raw\";\nprintln!(\"{x}\");",
+          "tokens": [
+            {
+              "category": "plain",
+              "text": "let x = \"raw\";\nprintln!(\"{x}\");"
+            }
+          ]
+        }
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 0,
+    "end": 8
+  }
+}

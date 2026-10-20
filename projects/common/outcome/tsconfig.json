@@ -1,0 +1,4 @@
+{
+  "extends": "../../../webui/tsconfig.base.json",
+  "include": ["index.ts", "evidence.ts", "sources.ts", "shared/**/*.ts", "shared/**/*.tsx", "fragments/**/*.ts", "fragments/**/*.tsx", "style.d.ts"]
+}

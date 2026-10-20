@@ -1,0 +1,130 @@
+/* The Peek chat, as in the reviewer it replaces. */
+.webui-chat { display: flex; flex-direction: column; min-width: 0; min-height: 0; height: 100%; background: #fafaf9; color: #252727; }
+.webui-chat-header { display: flex; align-items: center; justify-content: space-between; flex: none; gap: 12px; min-height: 58px; padding: 12px 20px; border-bottom: 1px solid #e4e4e1; font-size: 14px; }
+.webui-chat-header button { border: 0; border-radius: 6px; background: transparent; padding: 6px 8px; font: inherit; cursor: pointer; }
+.webui-chat-header button:hover { background: #ededea; }
+.webui-chat-history { flex: 1; min-width: 0; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 24px 22px; scrollbar-gutter: stable; }
+.webui-chat-empty { margin: 20px 0; color: #868882; font-size: 14px; text-align: center; }
+.webui-chat-message { max-width: 100%; margin: 0 0 28px; font-size: 14px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.webui-chat-message.user { width: fit-content; max-width: 88%; margin-left: auto; padding: 10px 15px; border-radius: 17px; background: #eceeea; }
+.webui-chat-message.assistant { padding: 0 2px; }
+.webui-chat-message { position: relative; }
+.webui-chat-message-tools { display: flex; gap: 6px; margin-top: 6px; opacity: 0; transition: opacity 120ms; }
+.webui-chat-message:hover .webui-chat-message-tools, .webui-chat-message:focus-within .webui-chat-message-tools { opacity: 1; }
+.webui-chat-message.user .webui-chat-message-tools { justify-content: flex-end; }
+.webui-chat-message-tools button { display: grid; place-items: center; width: 24px; height: 22px; padding: 0; border: 1px solid #d9dcd5; border-radius: 5px; background: #fff; color: #5c625d; cursor: pointer; }
+.webui-chat-message-tools button.copied { color: #18573a; border-color: #72a887; }
+.webui-chat-message-tools button:hover { background: #ededea; color: #252727; }
+.webui-chat-message > :first-child { margin-top: 0; }
+.webui-chat-message > :last-child { margin-bottom: 0; }
+.webui-chat-message pre { max-width: 100%; overflow: auto; white-space: pre; }
+.webui-chat-message.assistant pre:has(> code.language-draft) { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+.webui-chat-message.assistant pre > code.language-draft { font: inherit; }
+.webui-chat-typing { color: #777; }
+.webui-chat-composer { flex: none; min-width: 0; padding: 10px 18px 18px; }
+.webui-chat-input-box { border: 1px solid #d9dcd5; border-radius: 18px; padding: 12px 12px 9px; background: #fff; box-shadow: 0 2px 8px #00000005; }
+.webui-chat-input-box:focus-within { border-color: #a3aea5; }
+.webui-chat-input-box textarea { display: block; box-sizing: border-box; width: 100%; min-height: 48px; max-height: 180px; resize: none; border: 0; padding: 0 2px; outline: none; background: transparent; color: inherit; font: inherit; font-size: 14px; line-height: 1.6; }
+.webui-chat-actions { display: flex; align-items: center; gap: 8px; justify-content: flex-end; padding-top: 5px; }
+.webui-chat-actions > button { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #252b27; color: #fff; font-size: 21px; line-height: 1; cursor: pointer; }
+.webui-chat-actions > button:disabled { background: #e5e7e2; color: #9ca198; cursor: default; }
+.webui-chat button:focus-visible { outline: 2px solid #287456; outline-offset: 3px; }
+.webui-chat-error { padding: 0 2px 12px; color: #923c32; font-size: 13px; overflow-wrap: anywhere; }
+.webui-chat-composer-controls { display: flex; align-items: center; flex-wrap: wrap; flex: 1; min-width: 0; gap: 6px; }
+
+.proposal-peek-panel { position: relative; min-width: 0; min-height: 0; height: 100%; border-left: 1px solid #bfc6c1; }
+.peek-conversation-layout { display: grid; grid-template-columns: minmax(0, 1fr); height: 100%; min-width: 0; min-height: 0; }
+.peek-conversation-layout:has(.peek-file-viewer) { grid-template-columns: minmax(0, 1fr) var(--peek-viewer-width); }
+.peek-file-viewer { position: relative; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; min-height: 0; border-left: 1px solid #bfc6c1; background: #fbfbf8; }
+.peek-file-viewer > header { display: flex; align-items: center; gap: 12px; padding: 12px; border-bottom: 1px solid #dce0d9; font-size: 13px; }
+.peek-file-viewer > header small { color: #727c72; }
+.peek-file-viewer > header button { margin-left: auto; }
+.peek-file-viewer .source-notebook-file { min-height: 0; }
+.peek-file-viewer .source-notebook-body { position: relative; overscroll-behavior: contain; }
+.peek-file-viewer .source-notebook-body > code { min-width: 0; table-layout: fixed; }
+.peek-file-viewer .source-line-number { width: 42px; min-width: 0; }
+.peek-file-viewer .source-line-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.proposal-peek-panel .webui-chat-message { white-space: normal; }
+.webui-chat-header code { margin-left: 6px; color: #858b84; font-size: 12px; font-weight: 400; }
+.peek-interrupted { display: block; margin-top: 8px; color: #7c8179; font-size: 12px; }
+.peek-draft-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.peek-draft-button { flex: none; cursor: pointer; }
+.peek-draft-button:disabled { cursor: default; opacity: .45; }
+.peek-header { display: grid; gap: 9px; width: 100%; min-width: 0; }
+.peek-header-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.peek-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
+.peek-heading small { color: #7c8179; font-size: 12px; font-weight: 400; }
+.peek-header-actions { display: flex; align-items: center; gap: 6px; }
+.peek-header-actions button { font-size: 12px; }
+.peek-chat-picker { position: relative; min-width: 0; }
+.peek-chat-picker .peek-chat-trigger { display: flex; align-items: center; gap: 12px; width: 100%; padding: 8px 12px; border: 1px solid #dce0d9; border-radius: 8px; background: #f0f2ed; text-align: left; font-size: 12px; }
+.peek-chat-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.peek-chat-count { color: #7c8179; font-size: 12px; font-variant-numeric: tabular-nums; }
+.peek-chat-menu { position: absolute; z-index: 20; top: calc(100% + 5px); left: 0; right: 0; max-height: min(320px, 45vh); overflow-y: auto; overscroll-behavior: contain; padding: 4px; border: 1px solid #dce0d9; border-radius: 9px; background: #fff; box-shadow: 0 8px 24px #18251b24; }
+.peek-chat-menu .peek-chat-option { display: grid; gap: 5px; width: 100%; padding: 10px; text-align: left; }
+.peek-chat-option strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 500; }
+.peek-chat-option small { color: #7c8179; font-size: 12px; }
+.peek-chat-option[aria-current="true"] { background: #edf3e9; box-shadow: inset 3px 0 #5e8365; }
+
+/* Compact settings stay on one row; the popover opens above the composer. */
+.proposal-peek-panel .webui-chat-composer-controls { flex-wrap: nowrap; }
+.peek-model-loading { color: #7c8179; font-size: 12px; }
+.peek-settings-bar { position: relative; display: flex; align-items: center; min-width: 0; width: 100%; gap: 2px; }
+.peek-settings-bar button { border: 0; background: transparent; color: #535c54; font: inherit; cursor: pointer; }
+.peek-settings-bar button:disabled { opacity: .5; cursor: default; }
+.peek-settings-trigger { display: flex; align-items: center; justify-content: center; min-width: 0; gap: 5px; height: 30px; padding: 4px; border-radius: 7px; white-space: nowrap; font-size: 12px !important; }
+.peek-settings-trigger:hover, .peek-settings-trigger[aria-expanded="true"] { background: #eceee9; }
+.peek-model-trigger { flex: 1; justify-content: flex-start; }
+.peek-model-trigger > span:first-child { overflow: hidden; text-overflow: ellipsis; }
+.peek-effort-trigger { flex: none; }
+.peek-effort-bars { display: flex; align-items: end; gap: 2px; height: 13px; }
+.peek-effort-bars i { width: 2px; height: 5px; border-radius: 1px; background: #d2d6cf; }
+.peek-effort-bars i:nth-child(2) { height: 7px; }
+.peek-effort-bars i:nth-child(3) { height: 9px; }
+.peek-effort-bars i:nth-child(4) { height: 11px; }
+.peek-effort-bars i:nth-child(n+5) { height: 13px; }
+.peek-effort-bars i[data-active="true"] { background: #4e6152; }
+.peek-settings-menu { position: absolute; bottom: calc(100% + 10px); left: 0; z-index: 6; box-sizing: border-box; width: calc(100% + 40px); padding: 8px; border: 1px solid #dfe3da; border-radius: 12px; background: #fff; box-shadow: 0 8px 28px #18241620; }
+.peek-settings-label { display: block; padding: 4px 8px 8px; color: #798074; font-size: 12px; font-weight: 500; }
+.peek-model-options { max-height: min(300px, 45vh); overflow-y: auto; overscroll-behavior: contain; }
+.peek-model-option { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-height: 34px; padding: 7px 8px; border-radius: 6px; text-align: left; font-size: 12px !important; }
+.peek-model-option:hover, .peek-model-option[aria-pressed="true"] { background: #f0f2ed; }
+.peek-model-option small { color: #7d8678; font-size: 12px; }
+.peek-effort-control { min-width: 0; margin: 0; padding: 4px; border: 0; }
+.peek-effort-control legend { padding: 4px 0 8px; color: #535c54; font-size: 12px; }
+.peek-effort-scale { display: flex; gap: 4px; }
+.peek-effort-scale label { position: relative; flex: 1; min-width: 0; color: #7a8175; font-size: 12px; text-align: center; cursor: pointer; }
+.peek-effort-scale input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; inset: 0; cursor: pointer; }
+.peek-effort-segment { display: block; height: 8px; margin: 4px 0 7px; border-radius: 3px; background: #e9ece5; }
+.peek-effort-segment[data-active="true"] { background: #536e59; }
+.peek-effort-scale input:checked ~ span:last-child { color: #263e2c; font-weight: 600; }
+.peek-effort-scale input:focus-visible + .peek-effort-segment { outline: 2px solid #287456; outline-offset: 2px; }
+.peek-effort-control p { min-height: 32px; margin: 12px 0 2px; font-size: 12px; line-height: 1.5; color: #788071; }
+
+.peek-running { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; background: #2f7d4a; animation: peek-running-pulse 1.2s ease-in-out infinite; vertical-align: middle; flex: none; }
+@keyframes peek-running-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+/* Peek occupies the review sheet's body on a phone, keeping the sheet's close control in reach. */
+@media (max-width: 760px) {
+  .proposal-review-layout.peek-open > section:not(:has(.proposal-peek-panel)) { visibility: hidden; }
+  .proposal-review-layout.peek-open > section:has(.proposal-peek-panel) { position: absolute; inset: 0; }
+  .proposal-peek-panel { position: absolute; inset: 0; border-left: 0; }
+  .peek-conversation-layout:has(.peek-file-viewer) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 40%);
+  }
+  .peek-file-viewer { border-left: 0; border-top: 1px solid #bfc6c1; }
+  .peek-file-viewer > header { flex-wrap: wrap; gap: 6px; padding: 6px 12px; overflow-wrap: anywhere; }
+  .proposal-peek-panel .webui-chat-header { padding: 8px 12px; }
+  .proposal-peek-panel .webui-chat-history { padding: 12px; }
+  .proposal-peek-panel .webui-chat-composer { padding: 8px 12px max(8px, env(safe-area-inset-bottom, 0px)); }
+  .proposal-peek-panel textarea { font-size: 16px; }
+  .peek-settings-menu { width: 100%; }
+  .peek-effort-scale label { min-height: 40px; }
+  .proposal-peek-panel .webui-chat-actions > button { width: 40px; height: 40px; }
+}
+
+/* Peek-only mode: the chat takes the whole window. */
+html.peek-only .proposal-review-layout.peek-open > section:not(:has(.proposal-peek-panel)) { display: none !important; }
+html.peek-only .proposal-peek-panel { border-left: 0; }
+html.peek-only .webui-chat { font-size: 15px; }

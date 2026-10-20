@@ -1,0 +1,68 @@
+/* The Doubts tab: numbered doubts with locations, the Worker's answer and the ruling buttons;
+   a clicked link opens its target in the pane on the right. */
+.review-doubts-layout { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; }
+.review-doubts-layout.link-target-open { grid-template-columns: minmax(0, 1fr) minmax(320px, 44%); }
+.review-doubts { padding: 16px 24px; max-width: 860px; min-width: 0; }
+h2.review-doubts-section-heading { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+.review-doubts ol { padding-left: 20px; margin: 0; }
+.review-doubts li { margin: 0 0 12px; }
+.review-doubts li p { margin: 0 0 4px; line-height: 1.45; }
+.review-doubt-text { margin: 0 0 4px; }
+.review-doubt-conviction { margin: 0 0 6px; }
+.review-doubts li .review-doubt-conviction-headline { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin: 0 0 2px; font-size: 16px; }
+.review-doubt-conviction-label { font: 600 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: #9a3d34; }
+.review-doubts li .review-doubt-conviction-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 6px; color: #6b7280; font-size: 12px; overflow-wrap: anywhere; }
+.review-doubt-actions { display: flex; gap: 6px; }
+.review-doubt-actions button { font-size: 12px; padding: 2px 8px; }
+.review-doubt-ruling { font-size: 12px; font-weight: 600; }
+.review-doubt-actions .review-doubt-revoke { color: #6b7280; }
+.review-doubt-sustained { color: #9a3d34; }
+.review-doubt-dismissed { color: #6b7280; }
+.review-doubt-followup { color: #b54708; }
+.review-doubt-defer { color: #475467; }
+.review-doubt-worker { margin: 6px 0; padding: 4px 10px; border-left: 3px solid #cbd5e1; background: #f6f7f9; }
+.review-doubt-worker-label { display: block; font: 600 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: #4b5563; }
+.review-doubts li .review-doubt-worker p.review-doubt-worker-reason { margin: 2px 0; font-size: 16px; line-height: 1.75; overflow-wrap: anywhere; }
+.review-doubts li p.review-doubt-decision { margin: 8px 0; font-size: 15px; line-height: 1.7; }
+.review-doubts-empty, .review-doubts-error { padding: 12px 16px; color: #6b7280; }
+.review-doubts-error { color: #9a3d34; }
+.review-locations { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; font-size: 12px; }
+.review-locations button { max-width: 100%; overflow-wrap: anywhere; text-align: left; }
+@media (max-width: 760px) {
+  .review-locations button { min-height: 44px; }
+}
+/* An item's prose, drawn as a Kathy document inside the list. */
+.review-doubt-text .ky-document > :first-child, .review-rule-conflict-text .ky-document > :first-child { margin-top: 0; }
+.review-doubt-text .ky-document > :last-child, .review-rule-conflict-text .ky-document > :last-child { margin-bottom: 0; }
+.review-doubt-text .ky-document .ky-verbatim-inline, .review-rule-conflict-text .ky-document .ky-verbatim-inline { padding: 0 0.2em; border-radius: 3px; background: #f1f3f5; font-size: max(12px, 0.9em); }
+
+.review-rule-conflicts { margin-top: 20px; padding-top: 12px; border-top: 1px solid #cbd5e1; }
+.review-rule-conflicts h3 { font-size: 15px; margin: 0 0 8px; }
+.review-rule-conflicts > p { color: #6b7280; font-size: 13px; }
+
+/* The cited lines of a file the Diff does not show, opened under the doubt that cites them. */
+.review-doubt-source { margin: 6px 0 10px; border: 1px solid #d8dbe0; border-radius: 4px; overflow: hidden; }
+.review-doubt-source > header { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; padding: 6px 10px; border-bottom: 1px solid #d8dbe0; background: #f6f7f9; font-size: 12px; }
+.review-doubt-source > header span { color: #6b7280; }
+.review-doubt-source > code { display: table; width: 100%; max-height: 420px; overflow: auto; font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.review-doubt-source-line { display: table-row; }
+.review-doubt-source-number, .review-doubt-source-text { display: table-cell; }
+.review-doubt-source-number { width: 1%; padding: 0 10px; color: #9ca3af; text-align: right; user-select: none; }
+.review-doubt-source-text { padding: 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.review-doubt-source-line.quoted .review-doubt-source-number, .review-doubt-source-line.quoted .review-doubt-source-text { background: #fff0b5; color: #2e2a1d; }
+.review-doubt-worker-reason code { padding: 0 0.25em; border-radius: 3px; background: #eceef1; font: 0.88em ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+
+/* A link inside the list, and the pane on the right that shows what it opens. */
+button.review-link { margin: 0 4px 0 0; padding: 0; border: 0; background: none; color: #1d4ed8; font: inherit; text-decoration: underline; cursor: pointer; }
+button.review-link[aria-pressed="true"] { color: #1e3a8a; font-weight: 600; }
+.review-link-target { position: sticky; top: 0; max-height: calc(100vh - 140px); overflow: auto; margin: 16px 16px 16px 0; border: 1px solid #d8dbe0; border-radius: 6px; background: #fff; }
+.review-link-target > header { position: sticky; top: 0; display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #d8dbe0; background: #f6f7f9; }
+.review-link-target > header h3 { margin: 2px 0; font-size: 16px; line-height: 1.4; }
+.review-link-target-kind { font: 600 11px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; }
+.review-link-target-path { margin: 0; font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: #6b7280; overflow-wrap: anywhere; }
+.review-link-target > header button { align-self: flex-start; padding: 0 8px; font-size: 18px; line-height: 1.4; }
+.review-link-target-body { padding: 4px 16px 12px; font-size: 14px; line-height: 1.6; }
+@media (max-width: 1100px) {
+  .review-doubts-layout.link-target-open { grid-template-columns: minmax(0, 1fr); }
+  .review-link-target { position: static; max-height: none; margin: 0 16px 16px; }
+}

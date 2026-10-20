@@ -1,0 +1,19 @@
+{
+  "name": "@proposal/main-tab",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.tsx",
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "@proposal/kathy-document": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "typescript": "~6.0.2"
+  }
+}

@@ -1,0 +1,148 @@
+/*
+ * The Main tab: five sections in three columns, each pane drawing one reference page, as in the reviewer it replaces.
+ * The type is the narrow builds' (85mm paper, 4mm margin), as fractions of the page width. A pane up to 274px wide is
+ * set by the 12pt phone build across its whole width; a wider one by the 8pt pane build, across its whole width up to
+ * 411px, and on a 391.5px page (13px body text) centred beyond that.
+ */
+.proposal-main-tab {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #e4e4dd;
+}
+.proposal-main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  height: 100%;
+}
+.proposal-main-column {
+  container-type: inline-size;
+  display: grid;
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 1px;
+  min-width: 0;
+  min-height: 0;
+  background: #e4e4dd;
+}
+.proposal-main-section {
+  --main-tab-body-text: .033203;
+  --main-tab-line-height: .039428;
+  --main-tab-section-heading: .045446;
+  --main-tab-subsection-heading: .041503;
+  --main-tab-page-margin: .047059;
+  --main-tab-page-width: 391.535px;
+  --main-tab-section-page-width: var(--main-tab-page-width);
+  display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; background: #fff;
+}
+@container (max-width: 411.112px) {
+  .proposal-main-section { --main-tab-page-width: 100cqw; }
+}
+@container (max-width: 274.075px) {
+  .proposal-main-section {
+    --main-tab-body-text: .049804;
+    --main-tab-line-height: .06018;
+    --main-tab-section-heading: .071718;
+    --main-tab-subsection-heading: .059765;
+  }
+}
+.proposal-main-section-heading {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin: 0;
+  padding: 0 calc((100cqw - var(--main-tab-section-page-width)) / 2 + var(--main-tab-page-margin) * var(--main-tab-section-page-width));
+  border-top: 1px solid #e4e4dd;
+  border-bottom: 1px solid #e4e4dd;
+  background: #f7f7f3;
+  color: #5d655f;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.proposal-main-section:first-child .proposal-main-section-heading { border-top: 0; }
+.proposal-main-section-body {
+  container-type: inline-size;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable both-edges;
+}
+
+/* The web text — a Kathy document, the question — and the notices take the page's type size, leading and margins. */
+.proposal-main-section-body > .proposal-kathy-document,
+.proposal-main-section-body > .proposal-question > .proposal-question-document,
+.proposal-main-section-body > .proposal-main-section-absent {
+  box-sizing: border-box;
+  width: var(--main-tab-page-width);
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+  padding: calc(var(--main-tab-page-margin) * var(--main-tab-page-width));
+  overflow: visible;
+  font-size: max(12px, calc(var(--main-tab-body-text) * var(--main-tab-page-width)));
+  line-height: max(14.5px, calc(var(--main-tab-line-height) * var(--main-tab-page-width)));
+}
+.proposal-main-section-absent { color: #707a74; }
+.proposal-main-section-body > .proposal-question { flex-direction: column; height: auto; }
+.proposal-main-section-body > .proposal-question > .proposal-question-source { flex-basis: 50%; border-left: 0; border-top: 1px solid #c7ccc8; }
+.proposal-main-section-body > .proposal-question > .proposal-question-source > .proposal-resize-handle { display: none; }
+/*
+ * One typography for the Main tab's web text: every Kathy document and question is set in one face, at one body size
+ * and leading, with one pair of heading sizes. A Kathy \section and a Markdown # are the section heading, a \subsection
+ * and a ## the subsection heading.
+ */
+.proposal-main-tab .rs-markdown,
+.proposal-main-tab .ky-document {
+  color: #1d1d1b;
+  font-family: "Latin Modern Roman", "CMU Serif", "Times New Roman", Times, "Arial Unicode MS", "PingFang SC", serif;
+  font-size: max(12px, calc(var(--main-tab-body-text) * var(--main-tab-page-width)));
+  line-height: max(14.5px, calc(var(--main-tab-line-height) * var(--main-tab-page-width)));
+  overflow-wrap: anywhere;
+}
+.proposal-main-tab .rs-markdown > :first-child,
+.proposal-main-tab .ky-document > :first-child { margin-top: 0; }
+.proposal-main-tab .rs-markdown > :last-child,
+.proposal-main-tab .ky-document > :last-child { margin-bottom: 0; }
+.proposal-main-tab .rs-markdown p,
+.proposal-main-tab .rs-markdown ul,
+.proposal-main-tab .rs-markdown ol,
+.proposal-main-tab .ky-document p,
+.proposal-main-tab .ky-document ul { margin: 0 0 0.6em; }
+.proposal-main-tab .rs-markdown ul,
+.proposal-main-tab .rs-markdown ol,
+.proposal-main-tab .ky-document ul { padding-left: 1.4em; }
+.proposal-main-tab .ky-document li > p { margin: 0; }
+.proposal-main-tab .rs-markdown h1,
+.proposal-main-tab .rs-markdown h2,
+.proposal-main-tab .rs-markdown h3,
+.proposal-main-tab .ky-document h2,
+.proposal-main-tab .ky-document h3 { margin: 1.2em 0 0.6em; padding: 0; border: 0; color: inherit; font-family: inherit; font-weight: 700; line-height: 1.25; }
+.proposal-main-tab .rs-markdown h1,
+.proposal-main-tab .ky-document h2 { font-size: calc(var(--main-tab-section-heading) * var(--main-tab-page-width)); }
+.proposal-main-tab .rs-markdown h2,
+.proposal-main-tab .ky-document h3 { font-size: calc(var(--main-tab-subsection-heading) * var(--main-tab-page-width)); }
+.proposal-main-tab .rs-markdown h3 { font-size: max(12px, calc(var(--main-tab-body-text) * var(--main-tab-page-width))); }
+.proposal-main-tab .rs-markdown code,
+.proposal-main-tab .ky-document code,
+.proposal-main-tab .ky-document .ky-verbatim-inline { padding: 0 0.2em; border-radius: 3px; background: #f1f0ea; font-size: max(12px, 0.9em); line-height: inherit; }
+.proposal-main-tab .ky-document .ky-verbatim { font-size: max(12px, 0.85em); }
+/* A clipped preview of long printed data stays inline in the running text, on a phone too. */
+.proposal-kathy-document .ky-document .ky-verbatim-inline-long { display: inline; min-width: 0; min-height: 0; padding: 0 0.2em; }
+.proposal-main-tab .ky-document .katex { font-size: 1.1em; }
+.proposal-main-tab .ky-document .ky-math-display { margin: 0.5em 0; overflow-x: auto; overflow-y: hidden; }
+
+@media (max-width: 760px) {
+  .proposal-main-tab { overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain; }
+  .proposal-main-grid { grid-template-columns: minmax(0, 1fr); height: auto; min-height: 100%; }
+  .proposal-main-column { display: flex; flex-direction: column; background: #fff; }
+  .proposal-main-section { flex: none; overflow: visible; }
+  .proposal-main-section-body { flex: none; overflow: visible; }
+}

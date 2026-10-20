@@ -1,0 +1,69 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "plain_letter",
+        "letter": "A"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "B"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "tikzcd",
+        "arguments": [],
+        "asts": {
+          "kind": "tikz",
+          "range": {
+            "start": 1,
+            "end": 6
+          }
+        }
+      }
+    ],
+    "tikz": [
+      {
+        "kind": "word",
+        "value": "r"
+      },
+      {
+        "kind": "math_cell",
+        "range": {
+          "start": 0,
+          "end": 1
+        }
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "arrow"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "box",
+        "asts": {
+          "start": 0,
+          "end": 1
+        },
+        "right_delimiter": "box"
+      },
+      {
+        "kind": "alignment_marker"
+      },
+      {
+        "kind": "math_cell",
+        "range": {
+          "start": 1,
+          "end": 2
+        }
+      }
+    ]
+  },
+  "body": {
+    "start": 0,
+    "end": 1
+  }
+}

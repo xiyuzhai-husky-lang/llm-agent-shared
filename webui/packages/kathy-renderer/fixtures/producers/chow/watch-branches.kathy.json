@@ -1,0 +1,380 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "plain_letter",
+        "letter": "q"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "a"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "v"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "v"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "v"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "w"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "b"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 0,
+          "end": 1
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "in"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 1,
+          "end": 2
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "int"
+      },
+      {
+        "kind": "word",
+        "value": "at"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 2,
+          "end": 3
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "before"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 3,
+          "end": 4
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "after"
+      },
+      {
+        "kind": "punctuation",
+        "value": "hyphen"
+      },
+      {
+        "kind": "word",
+        "value": "42"
+      },
+      {
+        "kind": "table",
+        "columns": "l|cc",
+        "column_boundaries": [
+          "none",
+          "label",
+          "none",
+          "none"
+        ],
+        "rows": [
+          [
+            {
+              "start": 0,
+              "end": 0
+            },
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          [
+            {
+              "start": 6,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 8
+            }
+          ],
+          [
+            {
+              "start": 8,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 11
+            }
+          ]
+        ],
+        "horizontal_rules": [
+          1
+        ]
+      },
+      {
+        "kind": "word",
+        "value": "int"
+      },
+      {
+        "kind": "word",
+        "value": "at"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 4,
+          "end": 5
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "int"
+      },
+      {
+        "kind": "word",
+        "value": "at"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 5,
+          "end": 6
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "before"
+      },
+      {
+        "kind": "word",
+        "value": "42"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 6,
+          "end": 7
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "after"
+      },
+      {
+        "kind": "punctuation",
+        "value": "comma"
+      },
+      {
+        "kind": "verbatim_command",
+        "command_name": "verb",
+        "starred": false,
+        "delimiter": "|",
+        "body": "v == w"
+      },
+      {
+        "kind": "word",
+        "value": "43"
+      },
+      {
+        "kind": "word",
+        "value": "43"
+      },
+      {
+        "kind": "word",
+        "value": "after"
+      },
+      {
+        "kind": "punctuation",
+        "value": "comma"
+      },
+      {
+        "kind": "verbatim_command",
+        "command_name": "verb",
+        "starred": false,
+        "delimiter": "|",
+        "body": "v != w"
+      },
+      {
+        "kind": "word",
+        "value": "43"
+      },
+      {
+        "kind": "punctuation",
+        "value": "hyphen"
+      },
+      {
+        "kind": "word",
+        "value": "write"
+      },
+      {
+        "kind": "word",
+        "value": "recorded"
+      },
+      {
+        "kind": "table",
+        "columns": "l|cc",
+        "column_boundaries": [
+          "none",
+          "label",
+          "none",
+          "none"
+        ],
+        "rows": [
+          [
+            {
+              "start": 12,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          [
+            {
+              "start": 18,
+              "end": 19
+            },
+            {
+              "start": 19,
+              "end": 20
+            },
+            {
+              "start": 20,
+              "end": 21
+            }
+          ],
+          [
+            {
+              "start": 21,
+              "end": 24
+            },
+            {
+              "start": 24,
+              "end": 25
+            },
+            {
+              "start": 25,
+              "end": 26
+            }
+          ],
+          [
+            {
+              "start": 26,
+              "end": 29
+            },
+            {
+              "start": 29,
+              "end": 30
+            },
+            {
+              "start": 30,
+              "end": 31
+            }
+          ]
+        ],
+        "horizontal_rules": [
+          1
+        ]
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "kySideEffects",
+        "arguments": [
+          {
+            "kind": "required",
+            "data": {
+              "kind": "rose",
+              "range": {
+                "start": 31,
+                "end": 33
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "kyHoareWatch",
+        "arguments": [],
+        "asts": {
+          "kind": "rose",
+          "range": {
+            "start": 11,
+            "end": 12
+          }
+        }
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "kyHoareWatch",
+        "arguments": [],
+        "asts": {
+          "kind": "rose",
+          "range": {
+            "start": 33,
+            "end": 35
+          }
+        }
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 35,
+    "end": 37
+  }
+}

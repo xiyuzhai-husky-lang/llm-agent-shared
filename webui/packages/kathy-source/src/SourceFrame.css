@@ -1,0 +1,244 @@
+/* Expandable source ref -> source excerpt. Self-contained light styling. */
+.ks-frame {
+  margin: 6px 0;
+  min-width: 0;
+  max-width: 100%;
+  font-family: var(--cs-mono, ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace);
+}
+
+.ks-frame-inline,
+.ks-frame-inline .ks-body,
+.ks-frame-inline .ks-msg,
+.ks-frame-inline .ks-code {
+  display: block;
+}
+.ks-frame-compact-collapsed {
+  display: inline;
+  margin: 0;
+}
+.ks-pill {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: baseline;
+  gap: 3px;
+  margin: 0;
+  padding: 1px 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #6b7280;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ks-pill:hover { background: #e5e7eb; }
+.ks-pill:focus-visible { outline: 2px solid #6b7280; outline-offset: 2px; }
+.ks-pill .ks-caret { font-size: inherit; }
+
+/* the collapsed location chip */
+.ks-loc {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  padding: 3px 6px;
+  border: none;
+  border-radius: 6px;
+  background: #f1f5f9;
+  font: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ks-loc:hover {
+  background: #e2e8f0;
+}
+.ks-caret {
+  flex: 0 0 auto;
+  color: #6b7280;
+  font-size: 10px;
+}
+.ks-loc-prefix {
+  flex: 0 0 auto;
+  overflow: hidden;
+  color: #6b7280;
+  font-size: 10px;
+  font-style: italic;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ks-loc-path {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: #1e3a8a;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ks-loc-colon {
+  flex: 0 0 auto;
+  color: #6b7280;
+}
+.ks-loc-line {
+  flex: 0 0 auto;
+  color: #b45309;
+  font-weight: 600;
+}
+.ks-dedent {
+  flex: 0 0 auto;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.ks-body {
+  min-width: 0;
+  max-width: 100%;
+  margin: 4px 0 8px;
+}
+.ks-msg {
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #6b7280;
+}
+.ks-msg-error {
+  color: #b91c1c;
+}
+
+/* the source excerpt */
+.ks-code {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 0;
+  max-width: 100%;
+  max-height: 260px;
+  overflow: auto;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  tab-size: 4;
+  /* <pre> and <code> carry UA font-family: monospace; route both through
+     --cs-mono so an embedding page's code face applies. */
+  font-family: var(--cs-mono, ui-monospace, Menlo, monospace);
+}
+.ks-code > code {
+  display: block;
+  min-width: 100%;
+  width: max-content;
+  font-family: inherit;
+}
+.ks-row {
+  display: flex;
+  padding: 0 8px;
+  white-space: pre;
+}
+.ks-row-focus {
+  background: #fff7ed;
+  box-shadow: inset 3px 0 0 #f59e0b; /* the focused line, marked at the left */
+}
+.ks-row-focus .ks-gutter {
+  color: #b45309;
+  font-weight: 700;
+}
+.ks-gutter {
+  flex: 0 0 auto;
+  width: 3.4em;
+  padding-right: 14px;
+  text-align: right;
+  color: #9ca3af;
+  user-select: none;
+}
+.ks-line {
+  flex: 1 1 auto;
+  color: #1f2937;
+}
+
+/* Inline spans keep their decoration attached to each wrapped code fragment. */
+.ks-frame .cs-note { --ks-severity: #2563eb; --ks-severity-bg: #2563eb14; }
+.ks-frame .cs-error { --ks-severity: #dc2626; --ks-severity-bg: #dc262614; }
+.ks-frame .cs-warning { --ks-severity: #d97706; --ks-severity-bg: #d9770614; }
+.ks-frame .cs-span {
+  color: inherit;
+  background: var(--ks-severity-bg);
+  border-bottom: 2px solid var(--ks-severity);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.ks-frame .cs-annotation { color: var(--ks-severity); }
+.ks-frame .cs-annotation-content {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 0.5ch;
+  padding-bottom: 0.35em;
+  white-space: normal;
+}
+.ks-frame .cs-marker { flex: 0 0 auto; }
+.ks-frame .cs-label {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-family: var(--cs-mono, ui-monospace, Menlo, monospace);
+}
+
+.ks-loc-full-path {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .ks-pill,
+  .ks-loc {
+    min-width: 44px;
+    min-height: 44px;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: left;
+  }
+  .ks-loc {
+    flex-wrap: wrap;
+  }
+  .ks-loc-prefix,
+  .ks-loc-path {
+    overflow: visible;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
+  .ks-loc-prefix {
+    flex: 0 1 100%;
+    min-width: 0;
+  }
+  .ks-caret,
+  .ks-loc-prefix,
+  .ks-dedent {
+    font-size: 12px;
+  }
+  .ks-loc[aria-expanded="true"] .ks-loc-short-path {
+    display: none;
+  }
+  .ks-loc[aria-expanded="true"] .ks-loc-full-path {
+    display: inline;
+  }
+  .ks-body,
+  .ks-msg,
+  .ks-code {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .ks-msg {
+    overflow-wrap: anywhere;
+  }
+  .ks-code {
+    /* Let the page handle vertical reading; only code scrolls horizontally. */
+    max-height: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+}

@@ -1,0 +1,19 @@
+<span class="syntax-keyword">import</span> <span class="syntax-variable">Mathlib</span>
+
+<span class="syntax-comment">/- Outer comment
+</span><span class="syntax-comment">   /- nested 中文 🐕 &lt;tag&gt; &amp; -/</span>
+   still a comment <span class="syntax-punctuation">-</span><span class="syntax-punctuation">/</span>
+<span class="syntax-keyword">namespace</span> <span class="syntax-variable">Demo</span>
+
+<span class="syntax-keyword">def</span> <span class="syntax-variable">greeting</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">String</span> <span class="syntax-punctuation">:=</span> <span class="syntax-string">&#34;hello </span><span class="syntax-string">\&#34;</span><span class="syntax-string">world</span><span class="syntax-string">\&#34;</span><span class="syntax-string">&#34;</span>
+<span class="syntax-keyword">def</span> <span class="syntax-variable">twice</span> <span class="syntax-punctuation">(</span><span class="syntax-variable">n</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">Nat</span><span class="syntax-punctuation">)</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">Nat</span> <span class="syntax-punctuation">:=</span> <span class="syntax-variable">n</span> <span class="syntax-punctuation">+</span> <span class="syntax-variable">n</span>
+
+<span class="syntax-keyword">theorem</span> <span class="syntax-variable">identity</span> <span class="syntax-punctuation">(</span><span class="syntax-variable">α</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">Type</span><span class="syntax-punctuation">)</span> <span class="syntax-punctuation">(</span><span class="syntax-variable">x</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">α</span><span class="syntax-punctuation">)</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">x</span> <span class="syntax-punctuation">=</span> <span class="syntax-variable">x</span> <span class="syntax-punctuation">:=</span> <span class="syntax-function">by
+</span><span class="syntax-function">  </span><span class="syntax-function">rfl</span><span class="syntax-function">
+</span>
+<span class="syntax-comment">-- Unicode binders and operators</span>
+<span class="syntax-keyword">example</span> <span class="syntax-punctuation">(</span><span class="syntax-variable">n</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">Nat</span><span class="syntax-punctuation">)</span> <span class="syntax-punctuation">:</span> <span class="syntax-punctuation">∀</span> <span class="syntax-variable">x</span> <span class="syntax-punctuation">:</span> <span class="syntax-variable">Nat</span><span class="syntax-punctuation">,</span> <span class="syntax-variable">x</span> <span class="syntax-punctuation">≤</span> <span class="syntax-variable">x</span> <span class="syntax-punctuation">:=</span> <span class="syntax-function">by
+</span><span class="syntax-function">  </span><span class="syntax-function">intro </span><span class="syntax-variable">x</span><span class="syntax-function">
+</span><span class="syntax-function">  exact </span><span class="syntax-variable">Nat</span><span class="syntax-punctuation">.</span><span class="syntax-variable">le_refl</span><span class="syntax-function"> </span><span class="syntax-variable">x</span><span class="syntax-function">
+</span>
+<span class="syntax-keyword">end</span> <span class="syntax-variable">Demo</span>

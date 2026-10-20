@@ -1,0 +1,46 @@
+/* The Outcome tab, as in the reviewer it replaces: the run's fragments left, the selected fragment's report right. */
+.outcome-counts { flex: 0 0 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; text-align: right; white-space: nowrap; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
+.outcome-token-error { color: #a12622; }
+.outcome-token-warning { color: #886000; }
+.outcome-token-success { color: #28663a; }
+.outcome-sets { display: flex; height: 100%; min-height: 0; min-width: 0; overflow: hidden; color: #282828; background: #f5f5f5; font: 12px/1.4 system-ui, sans-serif; }
+.outcome-sets * { box-sizing: border-box; }
+.outcome-set-body { display: flex; flex-direction: column; flex: 1 1 0; min-width: 0; min-height: 0; }
+.outcome-report { padding: 6px 10px 16px; overflow: auto; }
+.outcome-figures { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 6px; padding: 4px 0 8px; border-bottom: 1px solid #bbb; }
+.outcome-figures > div { display: flex; gap: 6px; align-items: baseline; }
+.outcome-figures dt { color: #666; }
+.outcome-figures dd { margin: 0; font: 600 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
+.outcome-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.outcome-table th, .outcome-table td { padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: left; vertical-align: top; }
+.outcome-items { margin-top: 8px; }
+.outcome-items h4 { margin: 0 0 2px; }
+.outcome-items ul { list-style: none; margin: 0; padding: 0; }
+.outcome-items li { border-bottom: 1px solid #ddd; }
+.outcome-items summary { cursor: pointer; }
+.outcome-item { display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; min-width: 0; padding: 3px 0; }
+.outcome-item-label { flex: 0 1 auto; min-width: 0; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.outcome-item-note { flex: 0 1 auto; min-width: 0; overflow-wrap: anywhere; color: #555; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.outcome-item-children { padding-left: 18px; }
+.outcome-item-children li { border-bottom: none; }
+.outcome-token-plain { color: inherit; }
+.outcome-items > details > summary { cursor: pointer; list-style: revert; }
+.outcome-inline-title { display: inline; margin: 0; font: inherit; font-weight: 600; }
+.outcome-items > details > ul { max-height: 360px; overflow: auto; }
+.outcome-browser { display: flex; min-width: 0; height: 100%; background: #f8f8f6; }
+.outcome-fragment-list { flex: 0 0 170px; min-width: 0; overflow: auto; padding: 8px 4px; border-right: 1px solid #d4d7d2; }
+.outcome-fragment-list button { display: block; width: 100%; padding: 7px 8px; border: 0; border-radius: 0; background: transparent; text-align: left; font: inherit; font-size: 12px; overflow-wrap: anywhere; cursor: pointer; }
+.outcome-fragment-list button:hover { background: #eeefeb; }
+.outcome-fragment-list button[aria-pressed="true"] { background: #e1e7e2; }
+.outcome-fragment-list small { display: block; padding-top: 3px; color: #757b75; font-size: 12px; }
+.outcome-fragment-badge[data-status="passed"] { color: #28743b; }
+.outcome-fragment-badge[data-status="failed"] { color: #a13a32; }
+.outcome-fragment-elapsed { color: #757b75; }
+.outcome-fragment-detail { flex: 1; min-width: 0; min-height: 0; overflow: auto; }
+.outcome-measured { font-variant-numeric: tabular-nums; }
+.outcome-measured-passed { color: #1f6844; }
+.outcome-measured-warn { color: #73570d; }
+.outcome-measured-failed { color: #9a3d34; font-weight: 600; }
+/* After the measured tones, as in the old stylesheet order: the font shorthand resets their weight. */
+.outcome-state { margin: 0; padding: 8px; font: 12px/1.4 system-ui, sans-serif; }
+.outcome-empty { padding: 2px 0 4px; color: #666; }

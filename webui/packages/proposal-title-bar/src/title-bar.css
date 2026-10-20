@@ -1,0 +1,23 @@
+/* The title row's box is the page shell's header, which also holds the review toggle; the title bar's own parts are its
+   items, as they were in one flex row before the title bar became its own component. */
+.proposal-titlebar { display: contents; }
+
+.proposal-title-copy { display: flex; align-items: baseline; flex-wrap: wrap; min-width: 0; flex: 1 1 auto; gap: 4px 10px; }
+.proposal-titlebar h1 { min-width: 0; margin: 0; font-size: 19px; line-height: 1.25; overflow-wrap: anywhere; }
+.proposal-uid { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #6b7280; white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+.revision-picker { position: relative; flex: none; }
+.revision-picker-current { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px solid #c9cfcb; border-radius: 4px; background: #fff; color: #34423b; font: inherit; cursor: pointer; }
+.revision-picker-current strong { font-size: 12px; }
+.revision-picker-current code, .revision-picker-list code { font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: #56615b; }
+.revision-picker-list { display: none; position: absolute; z-index: 5; top: calc(100% + 4px); left: 0; min-width: 160px; padding: 4px; border: 1px solid #c9cfcb; border-radius: 4px; background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+.revision-picker.open .revision-picker-list { display: block; }
+.revision-picker-list a { display: flex; align-items: baseline; gap: 6px; padding: 6px 8px; border-radius: 3px; color: #34423b; text-decoration: none; white-space: nowrap; }
+.revision-picker-list a:hover { background: #f4f5f2; }
+.revision-picker-list a[aria-current="page"] { background: #eef4f0; box-shadow: inset 3px 0 #287456; }
+
+@media (max-width: 760px) {
+  .proposal-titlebar h1 { font-size: 17px; white-space: normal; word-break: normal; overflow-wrap: normal; }
+  .proposal-title-copy { flex: 1 1 100%; }
+  .proposal-title-copy .proposal-uid { flex: 1 1 100%; font-size: 12px; }
+}

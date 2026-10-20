@@ -1,0 +1,10 @@
+@font-face { font-family: Hack; src: url('./fonts/Hack-Regular.ttf') format('truetype'); font-display: swap; }
+.proposal-diagnosis { --cs-mono: Hack, ui-monospace, Menlo, monospace; }
+.proposal-diagnosis { box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; overflow-x: auto; padding: 20px; }
+.proposal-diagnosis .ky-document { min-width: 0; max-width: 100%; overflow-wrap: anywhere; line-height: 1.7; }
+.proposal-diagnosis .ky-math-display, .proposal-diagnosis .ky-verbatim { max-width: 100%; overflow-x: auto; }
+.proposal-diagnosis .ky-document > h2 { font-size: 24px; }
+.proposal-diagnosis .ky-document > h3 { font-size: 18px; }
+
+.kathy-surface { font-size: 16px; }
+.kathy-surface .ks-caret, .kathy-surface .ks-loc-prefix, .kathy-surface .ks-dedent { font-size: 12px; }

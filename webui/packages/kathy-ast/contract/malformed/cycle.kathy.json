@@ -1,0 +1,21 @@
+{
+  "arena": {
+    "math": [],
+    "rose": [
+      {
+        "kind": "delimited",
+        "left_delimiter": "curl",
+        "asts": {
+          "start": 0,
+          "end": 1
+        },
+        "right_delimiter": "curl"
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 0,
+    "end": 1
+  }
+}

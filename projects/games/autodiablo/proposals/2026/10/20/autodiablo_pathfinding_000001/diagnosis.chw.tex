@@ -1,0 +1,5 @@
+\section{Why a straight line fails}
+The map reader already marks each visible tile as ground, wall or lava, but the movement loop reads only the target's position. Nothing between the reader and the loop remembers which tiles can be stepped on.
+
+\section{What the search needs}
+A grid of walkable cells from the reader's tiles, a cost that forbids lava and penalizes cells next to it, and a way to notice that the path is blocked: a monster standing on the next cell for more than one tick.

@@ -1,0 +1,3 @@
+title = "Rulean cargo check"
+report = "rulean-cargo-check.json"
+command = 'python3 projects/common/outcome/fragments/rulean-cargo-check/run.py'

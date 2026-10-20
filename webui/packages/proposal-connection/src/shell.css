@@ -1,0 +1,340 @@
+/* The page frame: the sidebar column, the workspace with its title row, tab strip and content, and the review column. */
+:root {
+  color: #182027;
+  background: #e7e9e7;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+button { color: inherit; font: inherit; cursor: pointer; }
+[role="button"],
+[role="tab"] { cursor: pointer; }
+
+.app-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  padding: 32px;
+}
+.selection-state { flex-direction: column; text-align: center; }
+.selection-state p { margin: 4px 0; color: #59645d; }
+
+.panel-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  padding: 24px;
+  color: #8b2020;
+  white-space: pre-wrap;
+}
+
+.proposal-review-app {
+  display: grid;
+  grid-template-columns: var(--explorer-size, 250px) minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.proposal-review-detail { position: relative; min-width: 0; height: 100%; min-height: 0; overflow: hidden; }
+
+.proposal-workspace {
+  --peek-width: var(--peek-size, 340px);
+  --peek-viewer-width: var(--peek-viewer-size, min(560px, 44vw));
+  --review-with-peek-width: var(--review-size, 320px);
+  --peek-document-width: 320px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.proposal-workspace.review-open { grid-template-columns: minmax(0, 1fr) var(--review-size, 500px); }
+.proposal-review-detail:has(.peek-open) { overflow-x: auto; }
+.proposal-workspace.review-open:has(.peek-open) {
+  grid-template-columns: minmax(var(--peek-document-width), 1fr) calc(var(--review-with-peek-width) + var(--peek-width));
+  min-width: calc(var(--peek-document-width) + var(--review-with-peek-width) + var(--peek-width));
+}
+.proposal-review-app:has(.peek-file-viewer) {
+  grid-template-columns: var(--explorer-size, clamp(100px, 10vw, 180px)) minmax(0, 1fr);
+}
+.proposal-workspace.review-open:has(.peek-file-viewer) {
+  --peek-document-width: 280px;
+  --review-with-peek-width: var(--review-size, clamp(200px, 16vw, 300px));
+  --peek-width: var(--peek-size, clamp(240px, 20vw, 340px));
+  --peek-viewer-width: var(--peek-viewer-size, clamp(280px, 24vw, 480px));
+  grid-template-columns: minmax(var(--peek-document-width), 1fr) calc(var(--review-with-peek-width) + var(--peek-width) + var(--peek-viewer-width));
+  min-width: calc(var(--peek-document-width) + var(--review-with-peek-width) + var(--peek-width) + var(--peek-viewer-width));
+}
+
+.proposal-workspace-main {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.workspace-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  padding: 0 16px;
+  border-bottom: 1px solid #c7ccc9;
+  background: #eef0ee;
+}
+
+.workspace-tabs [role="tab"] {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: #5a625e;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.workspace-tabs [role="tab"].active {
+  border-bottom-color: #18654a;
+  color: #173b2e;
+  background: #fff;
+}
+
+.workspace-tabs [role="tab"]:focus-visible,
+.workspace-content:focus-visible {
+  outline: 2px solid #2a7b5d;
+  outline-offset: -2px;
+}
+
+.workspace-tab-label { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tab-stat-neutral { color: inherit; }
+.tab-stat-positive { color: #1f6844; }
+.tab-stat-negative { color: #9a3d34; }
+.tab-stat-must-sign { color: #fff; background: #a23f38; padding: 0 5px; border-radius: 3px; font-weight: 700; letter-spacing: .03em; }
+
+/* The mark of an unfinished candidate, wherever the candidate is named: a light orange ground for a question, a light
+   violet one for Chow problems, and a mark that never stops jiggling. */
+.candidate-stop-ground { border-radius: 4px; padding: 0 4px; }
+.candidate-stop-ground-incomplete { background: #fde8d3; }
+.candidate-stop-ground-chow-problems,
+.candidate-stop-ground-chow_problems { background: #ebe4fb; }
+.candidate-stop-mark { display: inline-block; margin-left: 4px; transform-origin: 50% 60%; animation: candidate-stop-jiggle 0.9s ease-in-out infinite; }
+@keyframes candidate-stop-jiggle { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { .candidate-stop-mark { animation: none; } }
+
+.workspace-body { min-width: 0; min-height: 0; height: 100%; }
+
+.workspace-content {
+  position: relative;
+  overflow: auto;
+  min-height: 0;
+  height: 100%;
+  background: #fff;
+}
+
+.proposal-format-notice { margin: 24px; color: #59645d; }
+
+.proposal-review-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-left: 1px solid #bfc6c1;
+  background: #f8f8f5;
+}
+.proposal-review-panel[hidden] { display: none; }
+.proposal-review-panel > .proposal-review-layout { flex: 1 1 0; min-height: 0; }
+
+/* The review column's top line, where the revision picker stands while the review is open. */
+.proposal-review-topline { display: flex; justify-content: flex-end; padding: 6px 10px; border-bottom: 1px solid #d3d7d4; background: #f4f5f2; }
+.proposal-review-topline .revision-picker-list { left: auto; right: 0; }
+
+.proposal-resize-handle { position: absolute; z-index: 8; inset: 0 auto 0 0; width: 7px; cursor: col-resize; touch-action: none; user-select: none; }
+.proposal-resize-handle::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 1px; background: #bfc6c1; }
+.proposal-resize-handle:hover, .proposal-resize-handle:focus-visible { background: #28745655; outline: none; }
+.proposal-resize-handle:active { background: #28745688; }
+
+.proposal-review-sheet-header { display: none; }
+.review-rail-toggle { margin: 8px 6px; padding: 6px 2px; border: 1px solid #bfc6c1; border-radius: 4px; background: #fff; font-size: 12px; }
+@media (min-width: 761px) {
+  .proposal-workspace.review-rail { grid-template-columns: minmax(0, 1fr) 184px; }
+  .review-rail .proposal-review-layout { display: block; }
+  .review-rail .proposal-peek-panel,
+  .review-rail .review-entry,
+  .review-rail .review-round.peek-only,
+  .review-rail .proposal-review-empty,
+  .review-rail .proposal-review-composer-main { display: none; }
+  .review-rail .proposal-review-document { padding: 4px 6px; }
+  .review-rail .review-round { margin: 0; padding: 6px 0; }
+  .review-rail .review-round-anchor,
+  .review-rail .review-round-identity { flex-direction: column; align-items: center; gap: 6px; }
+  .review-rail .review-round-connector { display: none; }
+  .review-rail .review-round-commit { flex-wrap: wrap; justify-content: center; }
+  .review-rail .review-round-actions { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .review-rail .review-round-actions .review-action { min-width: 0; padding: 8px 4px; white-space: normal; overflow-wrap: anywhere; font-size: 12px; }
+  .review-rail .proposal-review-composer { padding: 6px; }
+  .review-rail .proposal-review-state { min-height: 0; padding: 8px; overflow-wrap: anywhere; }
+  .proposal-review-detail:has(.review-rail) { overflow-x: hidden; }
+}
+.proposal-review-layout { height: 100%; min-height: 0; }
+.proposal-review-layout.peek-open {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--peek-width, 340px);
+}
+.proposal-review-layout > section { min-width: 0; min-height: 0; height: 100%; overflow: hidden; }
+.proposal-review-layout.peek-open:has(.peek-file-viewer) { grid-template-columns: minmax(0, 1fr) calc(var(--peek-width) + var(--peek-viewer-width)); }
+
+@media (max-width: 1400px) {
+  .proposal-review-app:where(:has(.peek-open)) { grid-template-columns: var(--explorer-size, 180px) minmax(0, 1fr); }
+  .proposal-workspace {
+    --peek-width: var(--peek-size, 300px);
+    --review-with-peek-width: var(--review-size, 280px);
+    --peek-document-width: 300px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .proposal-review-app { grid-template-columns: var(--explorer-size, 180px) minmax(0, 1fr); }
+  .proposal-workspace.review-open { grid-template-columns: minmax(180px, 1fr) var(--review-size, minmax(260px, 42%)); }
+}
+
+/* Phone layout: the sidebar is a strip above the workspace, and the review column is a sheet over it. */
+@media (max-width: 760px) {
+  .proposal-review-app,
+  .proposal-review-app:has(.peek-file-viewer) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .proposal-review-detail:has(.peek-open) { overflow: hidden; }
+  .proposal-workspace,
+  .proposal-workspace.review-open,
+  .proposal-workspace.review-open:has(.peek-open),
+  .proposal-workspace.review-open:has(.peek-file-viewer) {
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+  .proposal-workspace-main { display: contents; }
+  .workspace-tabs {
+    grid-row: 2;
+    min-width: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-inline: 4px;
+    overscroll-behavior-x: contain;
+  }
+  .workspace-tabs [role="tab"] { height: 40px; padding-inline: 10px; white-space: nowrap; }
+  .workspace-body { grid-row: 3; }
+  .workspace-content { overflow: auto; }
+  .proposal-review-panel:not([hidden]) {
+    position: fixed;
+    z-index: 30;
+    inset: 0;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    padding-top: env(safe-area-inset-top, 0px);
+    border-left: 0;
+    overscroll-behavior: contain;
+  }
+  .proposal-review-sheet-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 6px 12px;
+    border-bottom: 1px solid #bfc6c1;
+    background: #eef0ee;
+  }
+  .proposal-review-sheet-header .review-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 6px 8px;
+    border: 1px solid #aeb5b0;
+    border-radius: 4px;
+    color: #35413b;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  /* Peek occupies the sheet body, keeping the sheet's close control in reach. */
+  .proposal-review-layout,
+  .proposal-review-layout.peek-open,
+  .proposal-review-layout.peek-open:has(.peek-file-viewer) { position: relative; display: block; min-width: 0; min-height: 0; }
+  .proposal-review-layout > section { height: 100%; }
+  .proposal-review-layout.peek-open > section[data-component="ReviewPanel"] { visibility: hidden; }
+  .proposal-review-layout.peek-open > section[data-component="PeekPanel"] { position: absolute; inset: 0; }
+  .proposal-review-app button,
+  .proposal-review-app [role="button"],
+  .proposal-review-app [role="tab"] { min-height: 40px; }
+  .proposal-resize-handle { display: none; }
+}
+
+/* Peek-only mode: the chat takes the whole window. */
+html.peek-only .proposal-explorer, html.peek-only .proposal-workspace-main, html.peek-only .proposal-review { display: none !important; }
+html.peek-only .proposal-resize-handle { display: none !important; }
+html.peek-only .proposal-review-app, html.peek-only .proposal-workspace.review-open, html.peek-only .proposal-review-layout.peek-open { grid-template-columns: minmax(0, 1fr) !important; min-width: 0 !important; }
+
+/* The title row: the header components, then the review toggle. */
+.proposal-workspace-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-width: 0; min-height: 58px; padding: 12px 20px; border-bottom: 1px solid #d3d7d4; background: #fbfbf9; }
+.proposal-workspace-header > .proposal-slot { display: contents; }
+.review-toggle {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  color: #35413b;
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+}
+.review-toggle:hover { background: #ecefeb; }
+.review-toggle:focus-visible { outline: 2px solid #287456; outline-offset: 1px; }
+.proposal-tab-body { height: 100%; min-height: 0; }
+@media (max-width: 760px) {
+  .proposal-workspace-header { flex-wrap: wrap; grid-row: 1; gap: 6px 8px; padding: 8px 12px; }
+  .review-toggle { width: 40px; height: 40px; }
+}
+.proposal-slot-main { height: 100%; }
+.proposal-slot-sidebar { display: flex; min-width: 0; min-height: 0; overflow: hidden; }
+.proposal-slot-sidebar > * { flex: 1 1 auto; }
+.proposal-slot-sidebar > .app-state { background: #f8f9f8; }

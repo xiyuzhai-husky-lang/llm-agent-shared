@@ -1,0 +1,14 @@
+{
+  "extends": "../../../webui/tsconfig.base.json",
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "node"
+    ]
+  },
+  "include": [
+    "*.ts",
+    "*.tsx",
+    "tests"
+  ]
+}

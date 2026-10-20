@@ -1,0 +1,55 @@
+# Mission ranks (Naruto's D, C, B, A, S, extended by SS and SSS): `proposal-workflow start --rank <rank>` holds a run to its rank's row.
+#
+# deadline_minutes     counted from the run's start; when it passes before the run ends, the driver records one
+#                      `deadline` event in the run's events and the run goes on.
+# worker_revision_cap  Worker revisions per revision: Worker turns that answer review items (convictions, doubts,
+#                      Nitpicker doubts) with a changed candidate. The first Worker turn and gate repairs do not count.
+# model                the Codex model (`codex exec -m`) every role of the run runs on.
+# reasoning_effort     Codex's `model_reasoning_effort` for every role of the run: low, medium, high, xhigh, max or ultra.
+#
+# Once the cap is used, the Worker only responds: items go to a response-only turn of the same Worker session, which
+# answers each in words and may change nothing; any change ends the run as STUCK. The last candidate is still checked
+# once by the Commissar, the Reviewer and the Nitpicker, in that order, and their items go to response-only turns; then
+# the run presents. After a user verdict the Worker revisions count from zero again.
+
+[D]
+deadline_minutes = 15
+worker_revision_cap = 1
+model = "gpt-6.1-sol"
+reasoning_effort = "low"
+
+[C]
+deadline_minutes = 30
+worker_revision_cap = 2
+model = "gpt-6.1-sol"
+reasoning_effort = "high"
+
+[B]
+deadline_minutes = 60
+worker_revision_cap = 3
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[A]
+deadline_minutes = 120
+worker_revision_cap = 4
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[S]
+deadline_minutes = 240
+worker_revision_cap = 5
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[SS]
+deadline_minutes = 480
+worker_revision_cap = 6
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"
+
+[SSS]
+deadline_minutes = 960
+worker_revision_cap = 7
+model = "gpt-6-astra"
+reasoning_effort = "xhigh"

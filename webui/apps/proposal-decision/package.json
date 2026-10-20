@@ -1,0 +1,39 @@
+{
+  "name": "proposal-decision",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "dev": "vite",
+    "test:browser": "node tests/browser.mjs"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/node": "^24.12.3",
+    "playwright": "^1.62.1",
+    "@types/jsdom": "^30.0.0"
+  },
+  "dependencies": {
+    "@kathy/renderer": "workspace:*",
+    "@webui/peek": "workspace:*",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "@proposal/connection": "workspace:*",
+    "@proposal/title-bar": "workspace:*",
+    "@proposal/overview-sidebar": "workspace:*",
+    "@proposal/batch-stack-page": "workspace:*",
+    "@proposal/main-tab": "workspace:*",
+    "@proposal/tests-tab": "workspace:*",
+    "@proposal/doubts-tab": "workspace:*",
+    "@proposal/diff-tab": "workspace:*",
+    "@proposal/effect-tab": "workspace:*",
+    "@proposal/outcome-tab": "workspace:*",
+    "@proposal/review-panel": "workspace:*",
+    "@proposal/peek-panel": "workspace:*"
+  }
+}

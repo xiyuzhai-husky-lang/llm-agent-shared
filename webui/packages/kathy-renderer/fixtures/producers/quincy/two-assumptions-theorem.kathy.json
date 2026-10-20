@@ -1,0 +1,94 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "styled_word",
+        "style": "mathsf",
+        "word": "True"
+      },
+      {
+        "kind": "styled_word",
+        "style": "mathsf",
+        "word": "False"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "complete_command",
+        "command_name": "label",
+        "arguments": [
+          {
+            "kind": "required",
+            "data": {
+              "kind": "name",
+              "value": "nathyDocumentStructureTwoAssumptions"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "word",
+        "value": "Assume"
+      },
+      {
+        "kind": "word",
+        "value": "that"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 0,
+          "end": 1
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "new_paragraph"
+      },
+      {
+        "kind": "word",
+        "value": "Assume"
+      },
+      {
+        "kind": "word",
+        "value": "that"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 1,
+          "end": 2
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "theorem",
+        "arguments": [],
+        "asts": {
+          "kind": "rose",
+          "range": {
+            "start": 0,
+            "end": 10
+          }
+        }
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 10,
+    "end": 11
+  }
+}

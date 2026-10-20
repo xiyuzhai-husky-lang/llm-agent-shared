@@ -1,0 +1,15 @@
+.proposal-batch-page { height: 100%; overflow: auto; padding: 20px clamp(12px, 3vw, 40px) 60px; background: #fff; }
+.proposal-batch-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+.proposal-batch-header h1 { margin: 0; font-size: 22px; }
+.proposal-batch-header button { border: 1px solid #c9d0cb; border-radius: 4px; background: #fff; font-size: 12px; padding: 4px 8px; }
+.proposal-batch-page .proposal-review-note { margin: 0; color: #68716c; font-size: 12px; }
+.proposal-batch-page .outcome-figures { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 6px; padding: 4px 0 8px; border-bottom: 1px solid #bbb; }
+.proposal-batch-page .outcome-figures > div { display: flex; gap: 6px; align-items: baseline; }
+.proposal-batch-page .outcome-figures dt { color: #666; }
+.proposal-batch-page .outcome-figures dd { margin: 0; font: 600 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
+.proposal-batch { margin: 12px 0; padding: 12px 14px; border: 1px solid #dde1dd; border-radius: 5px; background: #fbfcfb; }
+.proposal-batch > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font-size: 13px; }
+.proposal-batch-members { display: grid; gap: 6px; margin: 12px 0 0; padding-left: 20px; font-size: 12px; }
+.proposal-batch-members li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.proposal-batch-members small { color: #6b7280; font-size: 12px; }
+.proposal-batch-page .proposal-ordinal { font-variant-numeric: tabular-nums; color: #3f4a44; }

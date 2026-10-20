@@ -1,0 +1,73 @@
+export const grammarNames = ["bash", "c", "c_sharp", "cpp", "css", "dart", "elisp", "elixir", "embedded_template", "go", "html", "java", "javascript", "json", "kotlin", "latex", "lua", "objc", "ocaml", "php", "python", "rescript", "ruby", "rust", "scala", "solidity", "swift", "systemrdl", "tlaplus", "toml", "tsx", "typescript", "vue", "yaml", "zig"] as const
+export type GrammarLanguage = typeof grammarNames[number]
+
+const extensions: Record<string, GrammarLanguage> = {
+  "sh": "bash",
+  "bash": "bash",
+  "zsh": "bash",
+  "c": "c",
+  "h": "c",
+  "cs": "c_sharp",
+  "cpp": "cpp",
+  "cc": "cpp",
+  "cxx": "cpp",
+  "hpp": "cpp",
+  "hh": "cpp",
+  "hxx": "cpp",
+  "css": "css",
+  "dart": "dart",
+  "el": "elisp",
+  "ex": "elixir",
+  "exs": "elixir",
+  "erb": "embedded_template",
+  "ejs": "embedded_template",
+  "go": "go",
+  "html": "html",
+  "htm": "html",
+  "java": "java",
+  "js": "javascript",
+  "jsx": "javascript",
+  "mjs": "javascript",
+  "cjs": "javascript",
+  "json": "json",
+  "jsonc": "json",
+  "kt": "kotlin",
+  "kts": "kotlin",
+  "tex": "latex", // Includes .qcy.tex: grammarForPath uses the last extension segment.
+  "sty": "latex",
+  "cls": "latex",
+  "lua": "lua",
+  "m": "objc",
+  "mm": "objc",
+  "ml": "ocaml",
+  "mli": "ocaml",
+  "php": "php",
+  "py": "python",
+  "pyi": "python",
+  "res": "rescript",
+  "resi": "rescript",
+  "rb": "ruby",
+  "rs": "rust",
+  "scala": "scala",
+  "sc": "scala",
+  "sol": "solidity",
+  "swift": "swift",
+  "rdl": "systemrdl",
+  "tla": "tlaplus",
+  "toml": "toml",
+  "tsx": "tsx",
+  "ts": "typescript",
+  "mts": "typescript",
+  "cts": "typescript",
+  "vue": "vue",
+  "yaml": "yaml",
+  "yml": "yaml",
+  "zig": "zig",
+}
+
+export function grammarForPath(path: string): GrammarLanguage | undefined {
+  const name = path.split('/').at(-1)?.toLowerCase() ?? ''
+  if (name === '.bashrc' || name === '.zshrc') return 'bash'
+  if (name === 'gemfile' || name === 'rakefile') return 'ruby'
+  return extensions[name.split('.').at(-1) ?? '']
+}

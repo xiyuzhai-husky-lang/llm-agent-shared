@@ -1,0 +1,25 @@
+{
+  "name": "@kathy/source",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/SourceFrame.css"
+  },
+  "scripts": {
+    "test": "vitest run src --environment jsdom"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "typescript": "~6.0.2",
+    "@testing-library/react": "^16.3.2",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "jsdom": "^30.0.1",
+    "vitest": "^4.1.10"
+  }
+}

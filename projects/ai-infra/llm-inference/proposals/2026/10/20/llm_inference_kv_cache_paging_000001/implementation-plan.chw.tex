@@ -1,0 +1,7 @@
+\section{Order of work}
+\begin{enumerate}
+\item Add \verb|kvcache/pool.go| with the free list, tested for exhaustion and reuse.
+\item Add \verb|kvcache/table.go| with append and lookup, tested across a block boundary.
+\item Add \verb|kvcache/evict.go| and call it from the step loop.
+\item Change \verb|attention/kernel.go| to gather keys and values through the table.
+\end{enumerate}

@@ -1,0 +1,6 @@
+\section{Grid, search, replan}
+\verb|Grid| is built once per visible map from the reader's tiles: ground is walkable at cost one, a cell next to lava costs three, lava and walls are not walkable.
+
+\verb|Search| is A-star over the grid with the straight-line distance as its heuristic; it returns the cell sequence or nothing when the target is unreachable.
+
+\verb|Replan| watches the next cell on the path; a monster there for two consecutive ticks discards the path and runs the search again from the bot's current cell.

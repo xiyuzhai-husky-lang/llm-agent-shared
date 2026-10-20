@@ -1,0 +1,1 @@
+export default { server: { host: '127.0.0.1', port: 9801, strictPort: true, proxy: { '/api': 'http://127.0.0.1:18801', '/candidate-file': 'http://127.0.0.1:18801', '/kathy-source': 'http://127.0.0.1:18801' } } }

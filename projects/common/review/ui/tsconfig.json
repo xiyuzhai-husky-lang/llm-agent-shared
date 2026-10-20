@@ -1,0 +1,15 @@
+{
+  "extends": "../../../../webui/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "vitest": [
+        "./node_modules/vitest"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "tests",
+    "vitest.config.ts"
+  ]
+}

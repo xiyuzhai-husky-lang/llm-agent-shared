@@ -1,0 +1,239 @@
+/* The review panel: the record, the round controls with their Peek orb, and the composer. */
+.proposal-review {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  background: #f8f8f5;
+}
+.proposal-review-history,
+.proposal-review-composer { min-width: 0; min-height: 0; }
+
+.proposal-review-history { overflow: auto; }
+
+.proposal-review-document {
+  width: 100%;
+  padding: 14px 14px 28px;
+}
+
+.proposal-review-document .rs-markdown { color: #27312c; font-size: 14px; line-height: 1.65; }
+.proposal-review-document .rs-markdown > :first-child { margin-top: 0; }
+.proposal-review-document .rs-markdown h1 { color: #1f6844; font-size: 23px; }
+.proposal-review-document .rs-markdown h2 { margin-top: 26px; font-size: 18px; }
+.proposal-review-document .rs-markdown h3 {
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid #e3e6e3;
+  color: #4c5751;
+  font-size: 13px;
+}
+.proposal-review-document .rs-markdown pre { overflow: auto; padding: 14px; background: #f3f5f3; }
+.proposal-review-document .rs-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+
+.review-entry {
+  width: fit-content;
+  max-width: 88%;
+  padding: 14px 16px;
+  border: 1px solid #d8ddd9;
+  border-radius: 5px;
+  background: #fbfcfb;
+}
+.review-entry + .review-entry { margin-top: 10px; }
+.review-entry.worker { margin-right: auto; border-left: 4px solid #7089ae; background: #f7f9fd; }
+.review-entry.reviewer { margin-left: auto; border-right: 4px solid #4d9475; background: #f4faf6; }
+.review-entry > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px; margin-bottom: 9px; }
+.review-entry > header strong { color: #31463d; font-size: 12px; }
+.review-entry > header time { color: #77817b; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.review-entry > header span {
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: #59645e;
+  background: #e8ebe8;
+  font-size: 12px;
+}
+.review-entry > header .review-permission { text-transform: capitalize; }
+.review-entry > header .review-permission.accept { color: #18573a; background: #e2f1e7; }
+.review-entry > header .review-permission.modify { color: #73570d; background: #f4edcf; }
+.review-entry > header .review-permission.reject { color: #842f2a; background: #f6e4e2; }
+.review-entry > header .review-permission.interact { color: #5b3f85; background: #eee8f7; }
+.review-entry > header .review-permission.revoke { color: #4b5563; background: #eceef1; }
+.review-entry .rs-markdown { font-size: 13px; }
+.review-entry .rs-markdown > :first-child { margin-top: 0; }
+.review-entry .rs-markdown > :last-child { margin-bottom: 0; }
+.proposal-review-empty { margin: 0; color: #737d77; font-size: 12px; }
+.proposal-review-empty { padding: 18px 0; }
+
+.proposal-review-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  padding: 28px;
+  color: #6b746e;
+  text-align: center;
+}
+.proposal-review-state.error { color: #8a2922; }
+
+.proposal-review-composer {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #d9ddda;
+  background: #eef0ee;
+}
+
+.proposal-review-composer-main {
+  display: grid;
+  gap: 8px;
+}
+
+.proposal-review-composer textarea {
+  display: block;
+  width: 100%;
+  min-height: 88px;
+  resize: vertical;
+  padding: 11px 12px;
+  border: 1px solid #aeb5b0;
+  border-radius: 4px;
+  outline: none;
+  color: #26332d;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.proposal-review-composer textarea:focus {
+  border-color: #287456;
+  box-shadow: 0 0 0 2px rgba(40, 116, 86, 0.14);
+}
+
+.proposal-review-composer textarea:disabled { color: #68716c; background: #f4f6f4; }
+
+.proposal-review-actions { display: flex; justify-content: flex-end; }
+
+.review-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 1px solid #aeb5b0;
+  border-radius: 4px;
+  color: #35413b;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  user-select: text;
+}
+
+.review-action:hover { filter: brightness(0.97); }
+.review-action:focus-visible { outline: 2px solid #287456; outline-offset: 1px; }
+.review-action[aria-disabled="true"] { cursor: default; opacity: 0.45; }
+.review-comment-action { color: #245a73; border-color: #8eafbe; }
+.review-permission-action.accept { color: #18573a; border-color: #72a887; background: #f5fbf7; }
+.review-permission-action.modify { color: #73570d; border-color: #bda65f; background: #fffcf1; }
+.review-permission-action.reject { color: #842f2a; border-color: #c48e89; background: #fff8f7; }
+.review-permission-action.interact { color: #5b3f85; border-color: #9e87bd; background: #faf7ff; }
+.review-permission-action.revoke { color: #4b5563; border-color: #a3aab5; background: #f7f8fa; }
+.review-permission-action.modify.armed { color: #fff; border-color: #a4842a; background: #a4842a; }
+.review-round { margin: 6px 0 0; padding: 0 12px; }
+.review-round-anchor { display: flex; align-items: center; gap: 12px; min-height: 58px; }
+.review-round-identity { display: flex; align-items: baseline; flex: none; gap: 7px; }
+.review-round-identity strong { color: #31463d; font-size: 12px; }
+.review-round-commit { display: flex; align-items: baseline; gap: 4px; color: #6f7973; font-size: 12px; }
+.review-round-commit:hover { color: #245a73; text-decoration: underline; }
+.review-round-commit:focus-visible { outline: 2px solid #287456; outline-offset: 2px; }
+.review-round-identity code { color: #6f7973; font-size: 12px; }
+.review-round-connector { flex: 1; min-width: 8px; height: 1px; background: linear-gradient(90deg, #d8ddd9, #a6bdb6); }
+.review-round-actions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; min-width: 0; }
+.review-round-actions .review-action { min-width: 0; overflow-wrap: anywhere; }
+.review-round.decided .review-round-actions { grid-template-columns: minmax(0, 1fr); max-width: 108px; }
+.review-peek-orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #1f2937;
+  outline-offset: 3px;
+  -webkit-tap-highlight-color: transparent;
+}
+.review-peek-orb-sphere {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid #8b949e;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 160ms ease;
+}
+.review-peek-orb-lens { width: 21px; height: 21px; stroke: currentColor; stroke-width: 1.4; }
+.review-peek-orb-message-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #f8f8f5;
+  border-radius: 50%;
+  background: #277b65;
+  visibility: hidden;
+}
+.review-peek-orb[data-has-messages="true"] .review-peek-orb-message-dot { visibility: visible; }
+.review-peek-orb[data-has-messages="true"] .review-peek-orb-sphere { border-color: #6b7280; }
+.review-peek-orb[aria-pressed="true"] .review-peek-orb-sphere {
+  color: #fff;
+  border-color: #1f2937;
+  background: #1f2937;
+}
+.review-peek-orb:focus-visible { outline: 2px solid #245c8b; }
+.review-peek-orb[aria-disabled="true"] { cursor: default; opacity: .45; }
+@media (prefers-reduced-motion: reduce) {
+  .review-peek-orb-sphere { transition: none; }
+  .review-peek-orb[aria-disabled="false"]:hover .review-peek-orb-sphere,
+  .review-peek-orb[aria-disabled="false"]:active .review-peek-orb-sphere { transform: none; }
+}
+@media (forced-colors: active) {
+  .review-round-connector { background: GrayText; }
+  .review-peek-orb-sphere { border-color: ButtonText; }
+  .review-peek-orb[aria-pressed="true"] { outline: 3px double Highlight; }
+  .review-peek-orb[data-has-messages="true"] .review-peek-orb-message-dot { border-color: Highlight; }
+}
+.proposal-review-note { margin: 0; color: #68716c; font-size: 12px; }
+/* One column as wide as the panel: an entry's longest unbroken run never widens it past the panel's edge. */
+.review-entry-with-rounds { display: grid; grid-template-columns: minmax(0, 1fr); }
+.review-entry { min-width: 0; overflow-wrap: anywhere; }
+.review-action:disabled { cursor: default; opacity: 0.45; }
+.review-permission-action.accept.blocked { color: #7c8179; border-color: #c5ccc7; background: #f2f4f2; }
+.review-peek-orb { padding: 0; border: 0; background: transparent; cursor: pointer; }
+.review-peek-orb[aria-pressed="true"] .review-peek-orb-sphere { color: #fff; border-color: #1f2937; background: #1f2937; }
+@media (max-width: 1050px) {
+  .review-round-actions { gap: 3px; }
+  .review-round-actions .review-action { min-width: 0; padding-inline: 3px; font-size: 12px; }
+}
+@media (max-width: 760px) {
+  .proposal-review-document { padding: 10px 10px 20px; }
+  .review-entry { padding: 12px; overflow-wrap: anywhere; }
+  .review-round-identity { flex-wrap: wrap; }
+  .review-round-commit { align-items: center; }
+  .review-round-actions { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .review-round-actions .review-action { padding: 6px; font-size: 12px; }
+  .proposal-review-composer { padding: 8px 12px max(8px, env(safe-area-inset-bottom, 0px)); overflow-y: auto; max-height: 50dvh; }
+  .proposal-review-composer textarea { min-height: 56px; height: clamp(56px, 12dvh, 88px); resize: none; font-size: 16px; }
+}
+/* A ruling entry: which item it rules on and how, then the item drawn as the Doubts tab draws it. */
+.review-entry-ruling-heading { margin: 0 0 6px; color: #31463d; font-size: 12px; font-weight: 600; }
+.review-entry-ruling .ky-document { font-size: 14px; line-height: 1.7; }
+.review-entry-ruling .ky-document > :first-child { margin-top: 0; }
+.review-entry-ruling .ky-document > :last-child { margin-bottom: 0; }
+.review-entry-ruling .ky-document .ky-verbatim-inline { padding: 0 0.2em; border-radius: 3px; background: #eef0ec; font-size: 0.9em; }
+/* The newest round's verdict buttons, between the record and the composer and never scrolled out of view. */
+.proposal-review-verdict { padding: 8px 12px; border-top: 1px solid #e0e3df; background: #f8f8f5; }

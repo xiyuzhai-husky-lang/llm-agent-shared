@@ -1,0 +1,33 @@
+{
+  "tree_sitter_cli": "0.25.10",
+  "grammars": [
+    {
+      "name": "lean",
+      "repository": "https://github.com/Julian/tree-sitter-lean",
+      "commit": "efe6b87145608d12f5996bd7f0cf6095a0e82261",
+      "directory": ".",
+      "generate": true
+    },
+    {
+      "name": "latex",
+      "repository": "https://github.com/latex-lsp/tree-sitter-latex",
+      "commit": "948b89c984ce27c9e2ad9a50d5641abd4efd5417",
+      "directory": ".",
+      "generate": true
+    },
+    {
+      "name": "markdown",
+      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+      "commit": "f969cd3ae3f9fbd4e43205431d0ae286014c05b5",
+      "directory": "tree-sitter-markdown",
+      "generate": false
+    },
+    {
+      "name": "markdown-inline",
+      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+      "commit": "f969cd3ae3f9fbd4e43205431d0ae286014c05b5",
+      "directory": "tree-sitter-markdown-inline",
+      "generate": false
+    }
+  ]
+}

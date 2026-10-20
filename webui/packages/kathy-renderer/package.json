@@ -1,0 +1,43 @@
+{
+  "name": "@kathy/renderer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./hydrate": "./src/hydrate.ts",
+    "./styles": "./src/styles.ts",
+    "./server": "./src/server.ts"
+  },
+  "scripts": {
+    "test": "vitest run src",
+    "test:browser": "playwright test",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@kathy/ast": "workspace:*",
+    "@kathy/vfs": "workspace:*",
+    "katex": "0.17.0",
+    "@kathy/source": "workspace:*",
+    "jsdom": "^30.0.1"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/bun": "^1.3.14",
+    "@types/katex": "^0.16.8",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12",
+    "vitest": "^4.1.10",
+    "@types/jsdom": "^30.0.0"
+  }
+}

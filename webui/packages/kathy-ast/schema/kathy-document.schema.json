@@ -1,0 +1,1868 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KyDocumentWire",
+  "type": "object",
+  "properties": {
+    "arena": {
+      "$ref": "#/$defs/KyAstArenaWire"
+    },
+    "body": {
+      "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "arena",
+    "body"
+  ],
+  "$defs": {
+    "KyAstArenaWire": {
+      "type": "object",
+      "properties": {
+        "math": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KyMathAstDataWire"
+          }
+        },
+        "rose": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KyRoseAstDataWire"
+          }
+        },
+        "tikz": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KyTikzAstDataWire"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "math",
+        "rose",
+        "tikz"
+      ]
+    },
+    "KyMathAstDataWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "letter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "plain_letter"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "letter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "style": {
+              "type": "string"
+            },
+            "styled_letter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "styled_letter"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "style",
+            "styled_letter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "style": {
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "styled_word"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "style",
+            "word"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "punctuation"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "digit"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "base": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "scripts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyMathAttachScriptWire"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "attach"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "base",
+            "scripts"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "left_delimiter": {
+              "type": "string"
+            },
+            "asts": {
+              "$ref": "#/$defs/KyMathAstIdxRangeWire"
+            },
+            "right_delimiter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "delimited"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "left_delimiter",
+            "asts",
+            "right_delimiter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command_name": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyMathCompleteCommandArgumentWire"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "complete_command"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "command_name",
+            "arguments"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command_name": {
+              "type": "string"
+            },
+            "starred": {
+              "type": "boolean"
+            },
+            "delimiter": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "verbatim_command"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "command_name",
+            "starred",
+            "delimiter",
+            "body"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "argument": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "lefted"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "command",
+            "argument"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "argument": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "righted"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "command",
+            "argument"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "starred": {
+              "type": "boolean"
+            },
+            "environment_name": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyEnvironmentArgumentWire"
+              }
+            },
+            "asts": {
+              "$ref": "#/$defs/KyAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "environment"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "starred",
+            "environment_name",
+            "arguments",
+            "asts"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "alignment_marker": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "alignment_marker"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "alignment_marker"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "line_break"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "spacing": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "punc_spacing"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "spacing"
+          ]
+        }
+      ]
+    },
+    "KyMathAttachScriptWire": {
+      "type": "object",
+      "properties": {
+        "script_kind": {
+          "type": "string"
+        },
+        "script": {
+          "$ref": "#/$defs/KyMathAttachScriptDataWire"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "script_kind",
+        "script"
+      ]
+    },
+    "KyMathAttachScriptDataWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "ast": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "subscript"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "ast"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ast": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "superscript"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "ast"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "number_of_quotes": {
+              "type": "integer",
+              "format": "uint8",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "kind": {
+              "type": "string",
+              "const": "quotes"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "number_of_quotes"
+          ]
+        }
+      ]
+    },
+    "KyMathAstIdxRangeWire": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "KyMathCompleteCommandArgumentWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/KyMathCommandArgumentDataWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "optional"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "data"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/KyMathCommandArgumentDataWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "curled"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "data"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ast": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "math_ast"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "ast"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ast": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "rose_ast"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "ast"
+          ]
+        }
+      ]
+    },
+    "KyMathCommandArgumentDataWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyMathAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "math"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "rose"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "letter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "letter"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "letter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "name"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "wild"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        }
+      ]
+    },
+    "KyRoseAstIdxRangeWire": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "KyEnvironmentArgumentWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/KyEnvironmentArgumentDataWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "optional"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "data"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/KyEnvironmentArgumentDataWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "required"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "data"
+          ]
+        }
+      ]
+    },
+    "KyEnvironmentArgumentDataWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "name"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "rose"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyMathAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "math"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "wild"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        }
+      ]
+    },
+    "KyAstIdxRangeWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyMathAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "math"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "rose"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyTikzAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "tikz"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "tokens": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyCodeToken"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "verbatim"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "text",
+            "tokens"
+          ]
+        }
+      ]
+    },
+    "KyTikzAstIdxRangeWire": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "KyCodeToken": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/$defs/KyCodeTokenCategory"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "category",
+        "text"
+      ]
+    },
+    "KyCodeTokenCategory": {
+      "type": "string",
+      "enum": [
+        "plain",
+        "keyword",
+        "type",
+        "number",
+        "string",
+        "character",
+        "comment",
+        "preprocessor",
+        "identifier",
+        "punctuation",
+        "whitespace",
+        "diff_deletion",
+        "diff_addition",
+        "diff_hunk",
+        "diff_file_header"
+      ]
+    },
+    "KyRoseAstDataWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "columns": {
+              "type": "string"
+            },
+            "column_boundaries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyTableColumnBoundary"
+              }
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+                }
+              }
+            },
+            "horizontal_rules": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "uint32",
+                "minimum": 0
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "table"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "columns",
+            "column_boundaries",
+            "rows",
+            "horizontal_rules"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "source": {
+              "$ref": "#/$defs/KyCodespanSource"
+            },
+            "content": {
+              "$ref": "#"
+            },
+            "annotations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyRenderedSpanAnnotation"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "rendered_span"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "source",
+            "content",
+            "annotations"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "prompt": {
+              "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+            },
+            "control": {
+              "$ref": "#/$defs/KyInputControl"
+            },
+            "kind": {
+              "type": "string",
+              "const": "input"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "name",
+            "prompt",
+            "control"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "source": {
+              "$ref": "#/$defs/KyCodespanSource"
+            },
+            "annotations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyCodespanAnnotation"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "codespan"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "source",
+            "annotations"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "word"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "punctuation"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "left_delimiter": {
+              "type": "string"
+            },
+            "math_asts": {
+              "$ref": "#/$defs/KyMathAstIdxRangeWire"
+            },
+            "right_delimiter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "math"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "left_delimiter",
+            "math_asts",
+            "right_delimiter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "left_delimiter": {
+              "type": "string"
+            },
+            "asts": {
+              "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+            },
+            "right_delimiter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "delimited"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "left_delimiter",
+            "asts",
+            "right_delimiter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "starred": {
+              "type": "boolean"
+            },
+            "command_name": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyRoseCompleteCommandArgumentWire"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "complete_command"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "command_name",
+            "arguments"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command_name": {
+              "type": "string"
+            },
+            "starred": {
+              "type": "boolean"
+            },
+            "delimiter": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "verbatim_command"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "command_name",
+            "starred",
+            "delimiter",
+            "body"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "starred": {
+              "type": "boolean"
+            },
+            "environment_name": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyEnvironmentArgumentWire"
+              }
+            },
+            "asts": {
+              "$ref": "#/$defs/KyAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "environment"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "starred",
+            "environment_name",
+            "arguments",
+            "asts"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "new_paragraph"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "nat32"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "item"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "KyTableColumnBoundary": {
+      "description": "Boundaries indexed before each column, plus the final right boundary.",
+      "type": "string",
+      "enum": [
+        "none",
+        "plain",
+        "label",
+        "star"
+      ]
+    },
+    "KyCodespanSource": {
+      "description": "Repository source reference; resolution belongs to the document producer/loader.",
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "end_line": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "oid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "line",
+        "end_line"
+      ]
+    },
+    "KyRenderedSpanAnnotation": {
+      "description": "Half-open UTF-8 byte offsets within the excerpt, before any normalization.",
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KyRenderedSpanTarget"
+          }
+        },
+        "label": {
+          "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+        },
+        "severity": {
+          "$ref": "#/$defs/KyCodespanSeverity",
+          "default": "note"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end",
+        "targets",
+        "label"
+      ]
+    },
+    "KyRenderedSpanTarget": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "start": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "end": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "rose"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "index",
+            "start",
+            "end"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "start": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "end": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "kind": {
+              "type": "string",
+              "const": "math"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "index",
+            "start",
+            "end"
+          ]
+        }
+      ]
+    },
+    "KyCodespanSeverity": {
+      "type": "string",
+      "enum": [
+        "error",
+        "warning",
+        "note"
+      ]
+    },
+    "KyInputControl": {
+      "description": "What kind of answer the control collects.",
+      "oneOf": [
+        {
+          "description": "Free text, possibly spanning several lines.",
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "text"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Exactly one of the listed options.",
+          "type": "object",
+          "properties": {
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "choice"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "options"
+          ]
+        },
+        {
+          "description": "Rose options from an itemize; the first option is recommended.",
+          "type": "object",
+          "properties": {
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+              }
+            },
+            "kind": {
+              "type": "string",
+              "const": "choice_items"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "options"
+          ]
+        },
+        {
+          "description": "A reviewer's verdict on the surrounding item: one of accept, modify, reject, interact,\npeek, together with a free-text note. The host stores both.",
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "verdict"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "KyCodespanAnnotation": {
+      "description": "File line and inclusive, 1-based Unicode character columns (before dedent).",
+      "type": "object",
+      "properties": {
+        "line": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "start": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "label": {
+          "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+        },
+        "severity": {
+          "$ref": "#/$defs/KyCodespanSeverity",
+          "default": "note"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "line",
+        "start",
+        "end",
+        "label"
+      ]
+    },
+    "KyRoseCompleteCommandArgumentWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/KyRoseCompleteCommandArgumentDataWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "optional"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "data"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/KyRoseCompleteCommandArgumentDataWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "required"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "data"
+          ]
+        }
+      ]
+    },
+    "KyRoseCompleteCommandArgumentDataWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "name"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyRoseAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "rose"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyMathAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "math"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "wild"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        }
+      ]
+    },
+    "KyTikzAstDataWire": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "range": {
+              "$ref": "#/$defs/KyMathAstIdxRangeWire"
+            },
+            "kind": {
+              "type": "string",
+              "const": "math_cell"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "range"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command_name": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "complete_command"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "command_name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "word"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "digit"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "letter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "letter"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "letter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "punctuation"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "subscript"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "superscript"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "alignment_marker"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "line_break"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "semicolon"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "comma"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "equals"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "single_quote"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "left_delimiter": {
+              "type": "string"
+            },
+            "asts": {
+              "$ref": "#/$defs/KyTikzAstIdxRangeWire"
+            },
+            "right_delimiter": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "delimited"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "left_delimiter",
+            "asts",
+            "right_delimiter"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "other"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ]
+        }
+      ]
+    }
+  },
+  "$id": "urn:kathy:document"
+}

@@ -1,0 +1,210 @@
+/* A quote notebook: the ruled outline, the quoted source, and the discussion beside it. */
+.proposal-notebook {
+  display: grid;
+  grid-template-columns: minmax(300px, 34%) minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  min-height: 640px;
+  background: #e8e7e1;
+}
+
+.proposal-notebook-outline,
+.quote-notebook-source { min-width: 0; min-height: 0; }
+
+.proposal-notebook-outline {
+  position: relative;
+  overflow-y: auto;
+  border-right: 1px solid #aeb4af;
+  background:
+    linear-gradient(90deg, transparent 34px, rgba(181, 72, 59, 0.2) 34px, rgba(181, 72, 59, 0.2) 35px, transparent 35px),
+    repeating-linear-gradient(180deg, #faf7ea 0, #faf7ea 31px, #dce3dd 32px);
+}
+
+.proposal-notebook-heading {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px 13px 48px;
+  border-bottom: 1px solid #aeb6b0;
+  background: rgba(250, 247, 234, 0.96);
+  backdrop-filter: blur(8px);
+}
+
+.proposal-notebook-heading span { color: #1f352d; font-size: 14px; font-weight: 780; }
+.quote-notebook-groups { padding: 8px 12px 32px 47px; }
+
+.quote-notebook-group > h3 {
+  position: sticky;
+  z-index: 2;
+  top: 47px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px -2px 5px;
+  padding: 7px 8px 6px;
+  border-bottom: 1px solid #b9c0ba;
+  color: #59645d;
+  background: rgba(240, 237, 221, 0.96);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.quote-notebook-items { display: grid; gap: 7px; }
+
+.proposal-notebook-item {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #c8ccc4;
+  border-radius: 4px;
+  color: #25352f;
+  background: rgba(255, 254, 247, 0.94);
+  box-shadow: 0 1px 2px rgba(38, 47, 41, 0.06);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.proposal-notebook-item:hover,
+.proposal-notebook-item:focus-visible { background: rgba(226, 232, 225, 0.9); }
+
+.quote-notebook-item.selected {
+  border-color: #b3632b;
+  background: #fffef7;
+  box-shadow: inset 3px 0 #d8762c, 0 1px 3px rgba(38, 47, 41, 0.09);
+}
+
+.quote-notebook-source { overflow: hidden; background: #f8f8f5; }
+
+.related-notebook-detail {
+  display: grid;
+  grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
+}
+
+.related-notebook-discussion,
+.related-notebook-source { min-width: 0; min-height: 0; }
+
+.related-notebook-discussion {
+  overflow: auto;
+  padding: 18px 20px 32px;
+  border-right: 1px solid #c2c7c3;
+  color: #28332e;
+  background: #fffdf5;
+}
+
+.related-notebook-discussion h2 {
+  margin: 0 0 14px;
+  color: #1f6844;
+  font-size: 17px;
+}
+
+.related-notebook-discussion .rs-markdown { font-size: 13px; line-height: 1.65; }
+.related-notebook-discussion .rs-markdown > :first-child { margin-top: 0; }
+.related-notebook-discussion .rs-markdown > :last-child { margin-bottom: 0; }
+.related-discussion-empty { margin: 0; color: #707a74; font-size: 13px; }
+.related-notebook-source { overflow: hidden; }
+
+.source-notebook-file {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  min-height: 640px;
+}
+
+.source-notebook-file > header {
+  display: grid;
+  gap: 5px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #c2c7c3;
+  background: #f1f2ee;
+}
+
+.source-notebook-file > header strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.source-match-notice { font-size: 12px; font-weight: 700; }
+.source-match-notice.exact { color: #1c6849; }
+
+.source-notebook-body {
+  overflow: auto;
+  min-height: 0;
+  padding: 8px 0 24px;
+  background: #fbfbf8;
+}
+
+.source-notebook-body > code {
+  display: table;
+  width: 100%;
+  min-width: max-content;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.source-line { display: table-row; }
+.source-line-number,
+.source-line-text { display: table-cell; }
+
+.source-line-number {
+  position: sticky;
+  left: 0;
+  width: 1%;
+  min-width: 48px;
+  padding: 0 12px 0 10px;
+  border-right: 1px solid #e0e3df;
+  color: #929993;
+  background: #f4f5f1;
+  text-align: right;
+  user-select: none;
+}
+
+.source-line-text { padding: 0 18px; white-space: pre; }
+
+.source-line.quote-highlight .source-line-number,
+.source-line.quote-highlight .source-line-text { color: #2e2a1d; background: #fff0b5; }
+.source-line.quote-highlight .source-line-number { box-shadow: inset 3px 0 #e28a2e; }
+
+.quote-source-state,
+.quote-notebook-zero-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  height: 100%;
+  padding: 28px;
+  color: #6b746e;
+  background: #f8f8f5;
+  text-align: center;
+}
+
+.quote-source-state.error { color: #8a2922; }
+a.proposal-notebook-item { display: block; text-decoration: none; }
+@media (max-width: 1050px) {
+  .proposal-notebook { grid-template-columns: minmax(220px, 34%) minmax(0, 1fr); }
+  .source-notebook-file { min-height: 520px; }
+}
+@media (max-width: 760px) {
+  .proposal-notebook { min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 40%) minmax(0, 1fr); }
+  .proposal-notebook-outline { border-right: 0; border-bottom: 1px solid #aeb4af; }
+  .proposal-notebook-heading { gap: 8px; padding-inline: 40px 10px; }
+  .quote-notebook-groups { padding-inline: 39px 8px; }
+  .quote-notebook-group > h3 { overflow-wrap: anywhere; }
+  .related-notebook-detail { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 35%) minmax(0, 1fr); }
+  .related-notebook-discussion { padding: 12px; border-right: 0; border-bottom: 1px solid #c2c7c3; overflow-wrap: anywhere; }
+  .related-notebook-discussion h2 { margin-bottom: 8px; font-size: 15px; }
+  .related-notebook-discussion .rs-markdown { font-size: 12px; }
+  .source-notebook-file { min-height: 0; }
+  .source-notebook-file > header { padding: 8px 12px; }
+  .quote-source-state, .quote-notebook-zero-state { min-height: 0; padding: 16px; }
+}

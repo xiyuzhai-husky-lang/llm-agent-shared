@@ -1,0 +1,153 @@
+.lean-bench-view {
+  --lean-bench-ink: #182027;
+  --lean-bench-muted: #68716c;
+  --lean-bench-rule: #d3d7d4;
+  --lean-bench-explorer-rule: #aeb5b0;
+  --lean-bench-paper: #fff;
+  --lean-bench-wash: #eef0ee;
+  --lean-bench-header: #fbfbf9;
+  --lean-bench-link: #18654a;
+  --lean-bench-red: #a52720;
+  --lean-bench-amber: #865b00;
+  position: relative;
+  display: grid;
+  /* Same explorer size hook as the proposal workspace; debugger column idiom below. */
+  grid-template-columns: var(--explorer-size, 280px) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--lean-bench-ink);
+  background: var(--lean-bench-paper);
+  font: 13px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.lean-bench-view * { box-sizing: border-box; }
+.lean-bench-view h2, .lean-bench-view h3, .lean-bench-view h4, .lean-bench-view p { margin: 0; }
+.lean-bench-view button {
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  padding: 0;
+}
+.lean-bench-view button:hover { color: var(--lean-bench-link); text-decoration: underline; }
+.lean-bench-view :focus-visible { outline: 2px solid var(--lean-bench-link); outline-offset: -2px; }
+.lean-bench-view code, .lean-bench-view pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.lean-bench-view .lean-bench-number { white-space: nowrap; text-align: end; font-variant-numeric: tabular-nums; }
+.lean-bench-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* The entire explorer scrolls; its filter stays at the top of that one scroll area. */
+.lean-bench-explorer { min-width: 0; min-height: 0; overflow: auto; scroll-padding-top: 164px; border-right: 1px solid var(--lean-bench-explorer-rule); background: var(--lean-bench-wash); }
+.lean-bench-explorer-header { position: sticky; z-index: 2; top: 0; padding: 18px 16px 12px; border-bottom: 1px solid var(--lean-bench-rule); background: var(--lean-bench-wash); }
+.lean-bench-explorer-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.lean-bench-explorer-title h2 { font-size: 17px; font-weight: 600; }
+.lean-bench-view .lean-bench-explorer-toggle { display: none; color: var(--lean-bench-link); font-size: 12px; }
+.lean-bench-filter { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 14px; color: var(--lean-bench-muted); font-size: 11px; }
+.lean-bench-filter input { width: 100%; min-width: 0; margin-top: 3px; padding: 6px 0; border: 0; border-bottom: 1px solid var(--lean-bench-explorer-rule); border-radius: 0; color: var(--lean-bench-ink); background: transparent; font: inherit; font-size: 12px; }
+.lean-bench-budget-filter { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 10px; font-size: 11px; }
+.lean-bench-budget-filter button { padding: 3px 0; border-bottom: 2px solid transparent; }
+.lean-bench-budget-filter button[aria-pressed="true"] { border-bottom-color: currentColor; font-weight: 600; }
+.lean-bench-explorer-list { padding: 8px; }
+.lean-bench-explorer-list table { table-layout: fixed; border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+.lean-bench-explorer-list th, .lean-bench-explorer-list td { padding: 0; text-align: start; font-weight: 400; }
+.lean-bench-explorer-list thead th { padding: 6px 4px; color: var(--lean-bench-muted); font-size: 10px; }
+.lean-bench-explorer-list thead th:nth-child(2) { width: 76px; text-align: end; }
+.lean-bench-explorer-list thead th:last-child { width: 22px; }
+.lean-bench-module button { display: block; width: 100%; padding: 7px 4px; overflow-wrap: anywhere; font: 10px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.lean-bench-explorer-row { cursor: pointer; border-left: 2px solid transparent; }
+.lean-bench-explorer-row:hover { background: var(--lean-bench-header); }
+.lean-bench-explorer-row.active { border-left-color: var(--lean-bench-link); background: var(--lean-bench-paper); }
+.lean-bench-explorer-row th button { display: block; width: 100%; min-height: 34px; padding: 7px 5px 7px 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.lean-bench-explorer-row th small { display: block; font-size: 10px; white-space: normal; }
+.lean-bench-explorer-row td.lean-bench-number { padding: 6px 4px; font-size: 11px; }
+.lean-bench-explorer-row td:last-child { text-align: center; }
+.lean-bench-status { font-weight: 600; }
+.lean-bench-marks { display: inline-flex; flex-wrap: wrap; justify-content: end; gap: 4px; }
+.lean-bench-view .lean-bench-budget-warn { color: var(--lean-bench-amber); }
+.lean-bench-view .lean-bench-budget-alarm { color: var(--lean-bench-red); }
+.lean-bench-view .lean-bench-slow, .lean-bench-view .lean-bench-fail { color: var(--lean-bench-red); }
+.lean-bench-view .lean-bench-unsupported { color: var(--lean-bench-muted); }
+.lean-bench-view .lean-bench-empty { padding: 16px; color: var(--lean-bench-muted); font-size: 12px; }
+
+/* A header above the detail columns, matching the debugger's pane / cols / col structure. */
+.lean-bench-detail.pane { display: flex; flex-direction: column; height: 100%; min-width: 0; min-height: 0; overflow: hidden; }
+.lean-bench-header { flex: none; padding: 12px 20px; border-bottom: 1px solid var(--lean-bench-rule); background: var(--lean-bench-header); font-size: 11px; }
+.lean-bench-metadata, .lean-bench-summary { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; }
+.lean-bench-metadata > div, .lean-bench-summary > div { display: flex; flex-wrap: wrap; gap: 0 6px; min-width: 0; }
+.lean-bench-summary { margin-top: 5px; }
+.lean-bench-view dt { color: var(--lean-bench-muted); }
+.lean-bench-view dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.lean-bench-header [role="status"] { margin-top: 6px; color: var(--lean-bench-red); }
+.lean-bench-view.compact .lean-bench-header { padding: 7px 12px; font-size: 10px; }
+.lean-bench-view.compact .lean-bench-explorer-header { padding: 12px; }
+.lean-bench-columns.cols { display: flex; align-items: stretch; flex: 1 1 auto; min-width: 0; min-height: 0; overflow-x: auto; overflow-y: hidden; }
+.lean-bench-columns > .col { height: 100%; min-height: 0; overflow: auto; padding: 20px; }
+.lean-bench-case-detail { flex: 1 0 min(440px, 100%); min-width: 0; }
+.lean-bench-process-detail { flex: 1 0 min(var(--peek-size, 340px), 100%); min-width: 0; border-left: 1px solid var(--lean-bench-rule); background: var(--lean-bench-header); }
+.lean-bench-column-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.lean-bench-column-header h3 { min-width: 0; font-size: 17px; font-weight: 600; overflow-wrap: anywhere; }
+.lean-bench-column-header button { color: var(--lean-bench-link); font-size: 12px; }
+.lean-bench-fields { display: grid; gap: 10px; margin: 0 0 20px; }
+.lean-bench-fields > div { display: grid; grid-template-columns: 114px minmax(0, 1fr); gap: 12px; }
+.lean-bench-fields dt { font-size: 12px; }
+.lean-bench-fields dd { font-size: 12px; }
+.lean-bench-fields pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
+.lean-bench-fields small { display: block; margin-top: 3px; color: var(--lean-bench-muted); }
+.lean-bench-view .lean-bench-note { margin: 8px 0; color: var(--lean-bench-muted); font-size: 11px; line-height: 1.6; }
+.lean-bench-view h4 { font-size: 12px; font-weight: 600; }
+.lean-bench-process-section { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--lean-bench-rule); }
+.lean-bench-process-section h4 { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.lean-bench-process-section h4 span { color: var(--lean-bench-muted); font-weight: 400; }
+.lean-bench-process { list-style: none; margin: 0; padding: 0; }
+.lean-bench-process li { display: flex; align-items: baseline; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.lean-bench-process li > button:not(.lean-bench-disclosure) { display: flex; flex: 1; justify-content: space-between; min-width: 0; gap: 16px; padding: 6px 4px; }
+.lean-bench-process li > button > span:first-child { overflow-wrap: anywhere; }
+.lean-bench-process button.active { color: var(--lean-bench-link); background: var(--lean-bench-wash); }
+.lean-bench-process .lean-bench-disclosure { flex: 0 0 18px; width: 18px; padding: 6px 0; }
+
+@media (prefers-color-scheme: dark) {
+  .lean-bench-view {
+    --lean-bench-ink: #e2e7e3;
+    --lean-bench-muted: #a4aea7;
+    --lean-bench-rule: #3d4840;
+    --lean-bench-explorer-rule: #536057;
+    --lean-bench-paper: #181e1a;
+    --lean-bench-wash: #222b25;
+    --lean-bench-header: #1c241f;
+    --lean-bench-link: #8bcbaa;
+    --lean-bench-red: #ff9690;
+    --lean-bench-amber: #f2ca65;
+    color-scheme: dark;
+  }
+}
+
+/* The phone has one tree and one scroll area, including all expanded details. */
+.lean-bench-view.lean-bench-tree-layout { display: block; overflow: auto; }
+.lean-bench-tree-layout * { border-radius: 0; box-shadow: none; }
+.lean-bench-tree-header { padding: 12px; }
+.lean-bench-tree-header h2 { font-size: 17px; }
+.lean-bench-tree-layout .lean-bench-header { padding: 8px 12px; font-size: 10px; }
+.lean-bench-tree-layout .lean-bench-filter { margin: 12px; }
+.lean-bench-tree, .lean-bench-tree-children { list-style: none; margin: 0; padding: 0; }
+.lean-bench-tree { padding: 0 12px 16px; }
+.lean-bench-tree-children { margin-left: 8px; padding-left: 8px; border-left: 1px solid var(--lean-bench-rule); }
+.lean-bench-tree-toggle { display: block; padding: 9px 4px; color: var(--lean-bench-link); overflow-wrap: anywhere; text-decoration: none; text-underline-offset: 3px; }
+.lean-bench-tree-toggle:hover { text-decoration: underline; }
+.lean-bench-tree-toggle > span[aria-hidden] { display: inline-block; width: 12px; }
+.lean-bench-tree-toggle[aria-current] { background: var(--lean-bench-wash); }
+.lean-bench-tree-details { margin-left: 8px; padding: 10px 0 10px 8px; border-left: 1px solid var(--lean-bench-rule); color: var(--lean-bench-ink); }
+.lean-bench-tree-layout .lean-bench-fields { gap: 8px; margin-bottom: 12px; }
+.lean-bench-tree-layout .lean-bench-fields > div { grid-template-columns: minmax(72px, 30%) minmax(0, 1fr); gap: 8px; }
+.lean-bench-tree-layout .lean-bench-fields .lean-bench-number { white-space: normal; }
+.lean-bench-tree-call { font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.lean-bench-tree-call .lean-bench-number { margin-left: 6px; color: var(--lean-bench-muted); }
+.lean-bench-tree-leaf { display: block; padding: 9px 4px 9px 20px; overflow-wrap: anywhere; }

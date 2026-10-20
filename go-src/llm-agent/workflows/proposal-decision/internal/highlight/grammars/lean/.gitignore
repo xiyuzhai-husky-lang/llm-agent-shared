@@ -1,0 +1,5 @@
+# Restored from the checksum-pinned release by go generate.
+/parser.c
+/scanner.c
+/tree_sitter/
+/.grammar-*/

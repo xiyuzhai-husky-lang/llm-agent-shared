@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Rejects a commit that stages Rust code, or any file mentioning the source
+# monorepo or its projects: this repository shares the generic programs and
+# the Markdown explaining them, free of their origin.
+set -euo pipefail
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+[[ -n "$staged" ]] || exit 0
+rust=$(printf '%s\n' "$staged" | grep -E '(\.rs$|(^|/)Cargo\.(toml|lock)$)' || true)
+if [[ -n "$rust" ]]; then
+  echo "pre-commit: Rust code is not committed to this repository:" >&2
+  printf '  %s\n' $rust >&2
+  exit 1
+fi
+banned='quincy|visored|husky'
+mentions=$(printf '%s\n' "$staged" | while IFS= read -r file; do
+  [[ "$file" == .githooks/pre-commit ]] && continue
+  if git show ":$file" | grep -qiE "$banned"; then echo "$file"; fi
+done)
+if [[ -n "$mentions" ]]; then
+  echo "pre-commit: these staged files mention the source monorepo or its projects ($banned), which this repository never does:" >&2
+  printf '  %s\n' $mentions >&2
+  exit 1
+fi

@@ -1,0 +1,134 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "complete_command",
+        "command_name": "lVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "rVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "lVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "rVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "lVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "rVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "lVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "rVert",
+        "arguments": []
+      },
+      {
+        "kind": "lefted",
+        "command": "left",
+        "argument": 0
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "righted",
+        "command": "right",
+        "argument": 1
+      },
+      {
+        "kind": "punctuation",
+        "value": ","
+      },
+      {
+        "kind": "lefted",
+        "command": "left",
+        "argument": 2
+      },
+      {
+        "kind": "digit",
+        "value": "1"
+      },
+      {
+        "kind": "righted",
+        "command": "right",
+        "argument": 3
+      },
+      {
+        "kind": "punctuation",
+        "value": ","
+      },
+      {
+        "kind": "lefted",
+        "command": "left",
+        "argument": 4
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "righted",
+        "command": "right",
+        "argument": 5
+      },
+      {
+        "kind": "punctuation",
+        "value": ","
+      },
+      {
+        "kind": "lefted",
+        "command": "left",
+        "argument": 6
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "righted",
+        "command": "right",
+        "argument": 7
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "y"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 8,
+          "end": 24
+        },
+        "right_delimiter": "dollar"
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 0,
+    "end": 1
+  }
+}

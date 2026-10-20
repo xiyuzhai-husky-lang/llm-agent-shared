@@ -1,0 +1,33 @@
+.webui-chat { display: flex; flex-direction: column; min-width: 0; min-height: 0; height: 100%; background: #fafaf9; color: #252727; }
+.webui-chat-header { display: flex; align-items: center; justify-content: space-between; flex: none; gap: 12px; min-height: 58px; padding: 12px 20px; border-bottom: 1px solid #e4e4e1; font-size: 14px; }
+.webui-chat-header button { border: 0; border-radius: 6px; background: transparent; padding: 6px 8px; font: inherit; cursor: pointer; }
+.webui-chat-header button:hover { background: #ededea; }
+.webui-chat-history { flex: 1; min-width: 0; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 24px 22px; scrollbar-gutter: stable; }
+.webui-chat-empty { margin: 20px 0; color: #868882; font-size: 14px; text-align: center; }
+.webui-chat-message { max-width: 100%; margin: 0 0 28px; font-size: 14px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.webui-chat-message.user { width: fit-content; max-width: 88%; margin-left: auto; padding: 10px 15px; border-radius: 17px; background: #eceeea; }
+.webui-chat-message.assistant { padding: 0 2px; }
+.webui-chat-message { position: relative; }
+.webui-chat-message-tools { display: flex; gap: 6px; margin-top: 6px; opacity: 0; transition: opacity 120ms; }
+.webui-chat-message:hover .webui-chat-message-tools, .webui-chat-message:focus-within .webui-chat-message-tools { opacity: 1; }
+.webui-chat-message.user .webui-chat-message-tools { justify-content: flex-end; }
+.webui-chat-message-tools button { display: grid; place-items: center; width: 24px; height: 22px; padding: 0; border: 1px solid #d9dcd5; border-radius: 5px; background: #fff; color: #5c625d; cursor: pointer; }
+.webui-chat-message-tools button.copied { color: #18573a; border-color: #72a887; }
+.webui-chat-message-tools button:hover { background: #ededea; color: #252727; }
+.webui-chat-message > :first-child { margin-top: 0; }
+.webui-chat-message > :last-child { margin-bottom: 0; }
+.webui-chat-message pre { max-width: 100%; overflow: auto; white-space: pre; }
+.webui-chat-message.assistant pre:has(> code.language-draft) { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+.webui-chat-message.assistant pre > code.language-draft { font: inherit; }
+.webui-chat-typing { color: #777; }
+.webui-chat-composer { flex: none; min-width: 0; padding: 10px 18px 18px; }
+.webui-chat-input-box { border: 1px solid #d9dcd5; border-radius: 18px; padding: 12px 12px 9px; background: #fff; box-shadow: 0 2px 8px #00000005; }
+.webui-chat-input-box:focus-within { border-color: #a3aea5; }
+.webui-chat-input-box textarea { display: block; box-sizing: border-box; width: 100%; min-height: 48px; max-height: 180px; resize: none; border: 0; padding: 0 2px; outline: none; background: transparent; color: inherit; font: inherit; font-size: 14px; line-height: 1.6; }
+.webui-chat-actions { display: flex; align-items: center; gap: 8px; justify-content: flex-end; padding-top: 5px; }
+.webui-chat-actions > button { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #252b27; color: #fff; font-size: 21px; line-height: 1; cursor: pointer; }
+.webui-chat-actions > button:disabled { background: #e5e7e2; color: #9ca198; cursor: default; }
+.webui-chat button:focus-visible { outline: 2px solid #287456; outline-offset: 3px; }
+.webui-chat-error { padding: 0 2px 10px; color: #923c32; font-size: 13px; overflow-wrap: anywhere; }
+
+.webui-chat-composer-controls { display: flex; align-items: center; flex-wrap: wrap; flex: 1; min-width: 0; gap: 6px; }

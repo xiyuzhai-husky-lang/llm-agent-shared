@@ -1,0 +1,22 @@
+/*
+ * The Effect on its tab of its own, as in the reviewer it replaces: a Kathy document in one scrolling column of readable
+ * width, in the Main tab's face; the question of an incomplete candidate beside its source pane.
+ */
+.proposal-effect-tab { height: 100%; min-height: 0; }
+.proposal-effect-tab > .proposal-kathy-document { height: 100%; overflow: auto; padding: 24px clamp(16px, 4vw, 48px); }
+.proposal-effect-tab > .proposal-kathy-document > .proposal-kathy-page { max-width: 46em; margin: 0 auto; }
+.proposal-effect-tab > .proposal-kathy-document .ky-document {
+  color: #1d1d1b;
+  font-family: "Latin Modern Roman", "CMU Serif", "Times New Roman", Times, "Arial Unicode MS", "PingFang SC", serif;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.proposal-effect-tab > .proposal-kathy-document .ky-document h2,
+.proposal-effect-tab > .proposal-kathy-document .ky-document h3 { margin: 1.2em 0 0.6em; font-weight: 700; line-height: 1.25; }
+.proposal-effect-tab > .proposal-kathy-document .ky-document h2 { font-size: 1.44em; }
+.proposal-effect-tab > .proposal-kathy-document .ky-document h3 { font-size: 1.2em; }
+.proposal-effect-tab > .proposal-kathy-document .ky-document > :first-child { margin-top: 0; }
+.proposal-effect-tab > .proposal-kathy-document .ky-document code,
+.proposal-effect-tab > .proposal-kathy-document .ky-document .ky-verbatim-inline { padding: 0 0.2em; border-radius: 3px; background: #f1f0ea; font-size: max(12px, 0.9em); line-height: inherit; }
+.proposal-effect-tab > .proposal-kathy-document .ky-document .katex { font-size: 1.1em; }

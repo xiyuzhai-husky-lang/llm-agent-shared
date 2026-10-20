@@ -1,0 +1,242 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "plain_letter",
+        "letter": "u"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "n"
+      },
+      {
+        "kind": "attach",
+        "base": 0,
+        "scripts": [
+          {
+            "script_kind": "subscript",
+            "script": {
+              "kind": "subscript",
+              "ast": 1
+            }
+          }
+        ]
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "sin",
+        "arguments": []
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "sqrt",
+        "arguments": [
+          {
+            "kind": "curled",
+            "data": {
+              "kind": "math",
+              "range": {
+                "start": 5,
+                "end": 6
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "digit",
+        "value": "3"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "sqrt",
+        "arguments": [
+          {
+            "kind": "optional",
+            "data": {
+              "kind": "math",
+              "range": {
+                "start": 7,
+                "end": 8
+              }
+            }
+          },
+          {
+            "kind": "curled",
+            "data": {
+              "kind": "math",
+              "range": {
+                "start": 8,
+                "end": 9
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "lVert",
+        "arguments": []
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "rVert",
+        "arguments": []
+      },
+      {
+        "kind": "lefted",
+        "command": "left",
+        "argument": 10
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "x"
+      },
+      {
+        "kind": "righted",
+        "command": "right",
+        "argument": 11
+      }
+    ],
+    "rose": [
+      {
+        "kind": "word",
+        "value": "A"
+      },
+      {
+        "kind": "word",
+        "value": "sequence"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 2,
+          "end": 3
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "converges"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "word",
+        "value": "The"
+      },
+      {
+        "kind": "word",
+        "value": "values"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 3,
+          "end": 5
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "punctuation",
+        "value": "comma"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 6,
+          "end": 7
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "punctuation",
+        "value": "comma"
+      },
+      {
+        "kind": "word",
+        "value": "and"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "dollar",
+        "math_asts": {
+          "start": 9,
+          "end": 10
+        },
+        "right_delimiter": "dollar"
+      },
+      {
+        "kind": "word",
+        "value": "are"
+      },
+      {
+        "kind": "word",
+        "value": "rendered"
+      },
+      {
+        "kind": "word",
+        "value": "inline"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "word",
+        "value": "The"
+      },
+      {
+        "kind": "word",
+        "value": "norm"
+      },
+      {
+        "kind": "word",
+        "value": "is"
+      },
+      {
+        "kind": "word",
+        "value": "displayed"
+      },
+      {
+        "kind": "word",
+        "value": "below"
+      },
+      {
+        "kind": "punctuation",
+        "value": "period"
+      },
+      {
+        "kind": "math",
+        "left_delimiter": "escaped_lbox",
+        "math_asts": {
+          "start": 12,
+          "end": 15
+        },
+        "right_delimiter": "escaped_rbox"
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 0,
+    "end": 24
+  }
+}

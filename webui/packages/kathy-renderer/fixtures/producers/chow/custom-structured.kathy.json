@@ -1,0 +1,97 @@
+{
+  "arena": {
+    "math": [],
+    "rose": [
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "tikzpicture",
+        "arguments": [],
+        "asts": {
+          "kind": "tikz",
+          "range": {
+            "start": 6,
+            "end": 12
+          }
+        }
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "lstlisting",
+        "arguments": [],
+        "asts": {
+          "kind": "verbatim",
+          "text": "expanded raw",
+          "tokens": [
+            {
+              "category": "plain",
+              "text": "expanded raw"
+            }
+          ]
+        }
+      }
+    ],
+    "tikz": [
+      {
+        "kind": "digit",
+        "value": "0"
+      },
+      {
+        "kind": "comma"
+      },
+      {
+        "kind": "digit",
+        "value": "0"
+      },
+      {
+        "kind": "digit",
+        "value": "1"
+      },
+      {
+        "kind": "comma"
+      },
+      {
+        "kind": "digit",
+        "value": "0"
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "draw"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "par",
+        "asts": {
+          "start": 0,
+          "end": 3
+        },
+        "right_delimiter": "par"
+      },
+      {
+        "kind": "punctuation",
+        "value": "-"
+      },
+      {
+        "kind": "punctuation",
+        "value": "-"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "par",
+        "asts": {
+          "start": 3,
+          "end": 6
+        },
+        "right_delimiter": "par"
+      },
+      {
+        "kind": "semicolon"
+      }
+    ]
+  },
+  "body": {
+    "start": 0,
+    "end": 2
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "arena": {
+    "math": [
+      {
+        "kind": "plain_letter",
+        "letter": "A"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "B"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "C"
+      },
+      {
+        "kind": "plain_letter",
+        "letter": "D"
+      }
+    ],
+    "rose": [
+      {
+        "kind": "word",
+        "value": "Diagram"
+      },
+      {
+        "kind": "word",
+        "value": "one"
+      },
+      {
+        "kind": "punctuation",
+        "value": "colon"
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "tikzpicture",
+        "arguments": [],
+        "asts": {
+          "kind": "tikz",
+          "range": {
+            "start": 6,
+            "end": 12
+          }
+        }
+      },
+      {
+        "kind": "new_paragraph"
+      },
+      {
+        "kind": "word",
+        "value": "Diagram"
+      },
+      {
+        "kind": "word",
+        "value": "two"
+      },
+      {
+        "kind": "punctuation",
+        "value": "colon"
+      },
+      {
+        "kind": "environment",
+        "starred": false,
+        "environment_name": "tikzcd",
+        "arguments": [],
+        "asts": {
+          "kind": "tikz",
+          "range": {
+            "start": 13,
+            "end": 22
+          }
+        }
+      }
+    ],
+    "tikz": [
+      {
+        "kind": "digit",
+        "value": "0"
+      },
+      {
+        "kind": "comma"
+      },
+      {
+        "kind": "digit",
+        "value": "0"
+      },
+      {
+        "kind": "digit",
+        "value": "1"
+      },
+      {
+        "kind": "comma"
+      },
+      {
+        "kind": "digit",
+        "value": "1"
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "draw"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "par",
+        "asts": {
+          "start": 0,
+          "end": 3
+        },
+        "right_delimiter": "par"
+      },
+      {
+        "kind": "punctuation",
+        "value": "-"
+      },
+      {
+        "kind": "punctuation",
+        "value": "-"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "par",
+        "asts": {
+          "start": 3,
+          "end": 6
+        },
+        "right_delimiter": "par"
+      },
+      {
+        "kind": "semicolon"
+      },
+      {
+        "kind": "word",
+        "value": "r"
+      },
+      {
+        "kind": "math_cell",
+        "range": {
+          "start": 0,
+          "end": 1
+        }
+      },
+      {
+        "kind": "complete_command",
+        "command_name": "arrow"
+      },
+      {
+        "kind": "delimited",
+        "left_delimiter": "box",
+        "asts": {
+          "start": 12,
+          "end": 13
+        },
+        "right_delimiter": "box"
+      },
+      {
+        "kind": "alignment_marker"
+      },
+      {
+        "kind": "math_cell",
+        "range": {
+          "start": 1,
+          "end": 2
+        }
+      },
+      {
+        "kind": "line_break"
+      },
+      {
+        "kind": "math_cell",
+        "range": {
+          "start": 2,
+          "end": 3
+        }
+      },
+      {
+        "kind": "alignment_marker"
+      },
+      {
+        "kind": "math_cell",
+        "range": {
+          "start": 3,
+          "end": 4
+        }
+      }
+    ]
+  },
+  "body": {
+    "start": 0,
+    "end": 9
+  }
+}

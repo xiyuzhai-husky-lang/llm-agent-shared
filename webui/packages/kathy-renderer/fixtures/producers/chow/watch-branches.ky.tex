@@ -1,0 +1,18 @@
+\begin{kyHoareWatch}
+\begin{tabular}{l|cc}
+ & $q$ in $a$ & int at $v$ \\
+\hline
+before & $v$ & \\
+after & - & 42 \\
+\end{tabular}
+\end{kyHoareWatch}
+\begin{kyHoareWatch}
+\begin{tabular}{l|cc}
+ & int at $v$ & int at $w$ \\
+\hline
+before & 42 & $b$ \\
+after, \verb|v == w| & 43 & 43 \\
+after, \verb|v != w| & 43 & - \\
+\end{tabular}
+\kySideEffects{write recorded}
+\end{kyHoareWatch}

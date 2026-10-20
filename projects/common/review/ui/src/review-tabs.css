@@ -1,0 +1,64 @@
+.review-doubts, .review-nitpicks { padding: 12px 16px; max-width: 720px; }
+.review-doubts ol, .review-nitpicks ol { padding-left: 20px; margin: 0; }
+.review-doubts li, .review-nitpicks li { margin: 0 0 12px; }
+.review-doubts li p, .review-nitpicks li p { margin: 0 0 4px; line-height: 1.45; }
+.review-nitpick-headline { font-size: 14px; }
+.review-nitpick-details { color: #6b7280; font-style: italic; font-size: 13px; }
+.review-nitpicks code { font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; font-style: normal; color: #4b5563; background: #f1f3f5; padding: 0 3px; border-radius: 3px; }
+.review-doubt-actions { display: flex; gap: 6px; align-items: center; }
+.review-doubt-actions button { font-size: 12px; padding: 2px 8px; }
+.review-doubt-ruling { font-size: 12px; font-weight: 600; }
+.review-doubt-actions .review-doubt-revoke { color: #6b7280; }
+.review-doubt-sustained { color: #9a3d34; }
+.review-doubt-dismissed { color: #6b7280; }
+.review-doubt-followup { color: #b54708; }
+.review-doubt-defer { color: #475467; }
+.review-doubt-worker { margin: 6px 0; padding: 4px 10px; border-left: 3px solid #cbd5e1; background: #f6f7f9; }
+.review-doubt-worker-label { display: block; font: 600 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: #4b5563; }
+.review-doubts li .review-doubt-worker p { margin: 2px 0; }
+.review-doubts li p.review-doubt-decision { margin: 6px 0; font-weight: 600; }
+.review-doubts-empty, .review-doubts-error, .review-nitpicks-empty { padding: 12px 16px; color: #6b7280; }
+.review-doubts-error { color: #9a3d34; }
+.review-nitpick-tag { display: inline-block; font: 600 11px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 0 6px; border-radius: 3px; margin: 0 0 2px; }
+.review-nitpick-must-fix { color: #7a3025; background: #fbe8e6; }
+.review-nitpick-note { color: #4b5563; background: #eceef1; }
+.review-nitpick-declined { color: #5b3f85; background: #eee8f7; }
+
+.review-findings { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+.review-finding { padding: 8px 0; }
+.review-finding p { margin: 4px 0; line-height: 1.45; }
+.review-finding > .review-nitpick-tag { margin-left: 8px; }
+.review-locations { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; font-size: 12px; }
+.review-locations button { max-width: 100%; overflow-wrap: anywhere; text-align: left; }
+.review-findings .review-doubt-actions button { min-width: 32px; min-height: 32px; }
+@media (max-width: 760px) {
+  .review-findings .review-doubt-actions button, .review-locations button { min-height: 44px; }
+}
+
+.review-hunk-findings > section { padding: 8px 0; }
+.review-hunk-findings > section + section { border-top: 1px solid #dbe3e6; }
+.review-hunk-empty { margin: 4px 0 0; color: #7b898e; font-size: 11px; }
+
+.review-doctrines { padding: 12px 16px; max-width: 720px; }
+.review-doctrines-list { padding-left: 20px; margin: 0; }
+.review-doctrines-item { margin: 0 0 12px; }
+.review-doctrines-item p { margin: 0 0 4px; line-height: 1.45; }
+.review-doctrines-headline { font-weight: 600; }
+.review-doctrines-meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: #6b7280; }
+.review-doctrines-location { font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+.review-doctrines-halt { margin: 0 0 12px; padding: 8px 10px; border: 1px solid #c88f88; border-radius: 4px; background: #fdf3f2; color: #9a3d34; line-height: 1.45; }
+.review-doctrines-halt strong { margin-right: 6px; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+.review-doctrines-name { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; margin-right: 8px; }
+.review-doctrines-status { font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #6b7280; }
+.review-doctrines-status-convicted { color: #b42318; }
+.review-doctrines-status-unfinished { color: #b54708; }
+.review-doctrines-clean { margin: 0 0 12px; color: #6b7280; }
+.review-doctrines-coverage { margin-top: 12px; padding-top: 8px; border-top: 1px solid #dbe3e6; font-size: 12px; color: #6b7280; }
+.review-doctrines-coverage p { margin: 0 0 4px; line-height: 1.45; }
+/* The label an incomplete proposal carries sits on a light orange ground (user 2026-09-27: "maybe color the proposal
+name differently?", "(or its bg"): the proposal's name in the list, its revision chips, and the tab that holds the question. */
+.incomplete-ground { background: #fde8d3; border-radius: 4px; padding: 0 4px; }
+.incomplete-mark { display: inline-block; margin-left: 4px; animation: incomplete-jiggle 0.9s ease-in-out infinite; transform-origin: 50% 60%; }
+@keyframes incomplete-jiggle { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { .incomplete-mark { animation: none; } }
+.review-doctrines-empty { padding: 12px 16px; color: #6b7280; }

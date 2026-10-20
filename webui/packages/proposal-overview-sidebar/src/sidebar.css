@@ -1,0 +1,77 @@
+.proposal-explorer {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid #aeb5b0;
+  background: #f8f9f8;
+}
+
+.proposal-explorer-header {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 16px 12px;
+  border-bottom: 1px solid #c1c7c3;
+  background: rgba(238, 240, 238, 0.96);
+  backdrop-filter: blur(8px);
+}
+
+.proposal-explorer-header h1 { margin: 0; font-size: 17px; }
+.proposal-explorer-header button { background: #fff; border: 1px solid #c9d0cb; border-radius: 4px; padding: 3px 6px; font-size: 12px; }
+.proposal-explorer-list { display: grid; grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr); flex: 1; min-height: 0; }
+.proposal-explorer-part { display: grid; gap: 4px; min-height: 0; padding: 8px; overflow-y: auto; align-content: start; }
+.proposal-explorer-part h2 { margin: 0 4px 2px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #3f4a44; }
+.proposal-explorer-count { font-weight: 400; color: #6b7280; }
+.proposal-ordinal { font-variant-numeric: tabular-nums; color: #3f4a44; }
+.proposal-status { font-style: normal; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; }
+.proposal-status-accept { color: #2f7d4a; }
+.proposal-status-modify { color: #b45309; }
+.proposal-status-reject { color: #9a3d34; }
+.proposal-explorer-part[data-part="closed"] { border-top: 3px solid #aeb5b0; }
+.proposal-explorer-part[data-part="in progress"] { max-height: 30vh; border-top: 3px solid #9cc3e4; }
+.proposal-explorer-part-toggle { display: inline-flex; align-items: center; gap: 4px; margin: 0; padding: 0; border: 0; background: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; cursor: pointer; }
+.proposal-explorer-list .proposal-explorer-chevron { display: inline-block; width: 12px; font-size: 16px; line-height: 1; color: #6b7280; }
+@media (min-width: 761px) {
+  /* A folded Closed gives its half of the list back to Open. */
+  .proposal-explorer-list:has(> .proposal-explorer-part[data-part="closed"][data-collapsed="true"]) { grid-template-rows: minmax(0, 1fr) auto auto; }
+}
+
+.proposal-explorer-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 10px 9px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #1c2923;
+  text-decoration: none;
+}
+
+.proposal-explorer-list a:hover { border-color: #c9d0cb; }
+.proposal-explorer-list a[aria-current="page"] { border-color: #8eaaa0; box-shadow: inset 3px 0 #287456; }
+.proposal-explorer-list a:focus-visible { outline: 2px solid #2a7b5d; outline-offset: -2px; }
+.proposal-explorer-list strong { font-size: 12px; line-height: 1.35; }
+.proposal-explorer-list span { color: #68716c; font-size: 12px; }
+.proposal-explorer-empty { margin: 14px 16px; color: #68716c; font-size: 12px; }
+
+/* Phone: the sidebar is a strip of rows above the workspace. */
+@media (max-width: 760px) {
+  .proposal-explorer { border-right: 0; border-bottom: 1px solid #aeb5b0; }
+  .proposal-explorer-header { position: static; flex: none; align-items: center; padding: 4px 8px; border: 0; }
+  .proposal-explorer-header h1 { font-size: 12px; }
+  .proposal-explorer-stack-notice { flex: none; margin: 0 8px 4px; overflow: hidden; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; }
+  .proposal-explorer-list { display: grid; flex: none; grid-template-rows: auto auto auto; min-width: 0; padding: 0; }
+  .proposal-explorer-part { display: flex; align-items: center; gap: 4px; min-width: 0; padding: 4px 6px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; }
+  .proposal-explorer-list .proposal-status { display: inline; margin-left: 4px; }
+  .proposal-explorer-part h2 { flex: none; margin: 0 4px; white-space: nowrap; }
+  /* A row takes the strip's remaining width and wraps its title and date inside it. */
+  .proposal-explorer-list a { flex: 1 1 auto; min-width: 0; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 6px 8px; min-height: 40px; }
+  .proposal-explorer-list strong { min-width: 0; font-size: 12px; overflow-wrap: anywhere; }
+  .proposal-explorer-list a > span { min-width: 0; overflow-wrap: anywhere; }
+}

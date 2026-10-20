@@ -1,0 +1,20 @@
+{
+  "arena": {
+    "math": [],
+    "rose": [
+      {
+        "kind": "word",
+        "value": "visible"
+      },
+      {
+        "kind": "word",
+        "value": "orphan"
+      }
+    ],
+    "tikz": []
+  },
+  "body": {
+    "start": 0,
+    "end": 1
+  }
+}

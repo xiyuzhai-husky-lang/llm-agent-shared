@@ -1,0 +1,17 @@
+# Project data for go-src/llm-agent/workflows/proposal-workflow.
+target_branch = "autodiablo"
+branch_prefix = "temp_autodiablo_proposal_"
+folder_marker = "revision.json"
+review_surfaces_gate = "tools/proposal-review-surfaces-gate.sh"
+
+landing_dependencies = ["run-tests.sh"]
+landing_uid_check = "environment"
+landing_main_changes = "merge-check"
+landing_review_hooks = "skip"
+landing_merge_hooks = "skip"
+landing_trailer_environment = ["Committed-By=COMMITTED_BY", "Co-Authored-By=CO_AUTHORED_BY"]
+landing_trailer_literals = []
+landing_environment = []
+landing_outcome = "run-tests"
+
+go_surfaces = "kathy"

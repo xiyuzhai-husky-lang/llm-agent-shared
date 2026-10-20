@@ -1,0 +1,5 @@
+\section{Where the memory goes}
+The scheduler admits a sequence only if a cache of its maximum length fits; most sequences stop far earlier, and the reserved tail is idle until the sequence ends.
+
+\section{What paging needs}
+Blocks of a fixed number of tokens, a free list over the pool, a table from each sequence's logical block index to a physical block, and a kernel that follows the table instead of a contiguous buffer.

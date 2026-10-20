@@ -1,0 +1,36 @@
+{
+  "name": "@projects/kathy-surface",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.tsx",
+    "./node": "./node.ts",
+    "./kathy-surface.css": "./kathy-surface.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kathy/ast": "workspace:*",
+    "@kathy/vfs": "workspace:*",
+    "@kathy/renderer": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "vite": ">=8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@testing-library/react": "^16.3.2",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "jsdom": "^30.0.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12",
+    "vitest": "^4.1.10"
+  }
+}

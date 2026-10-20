@@ -1,0 +1,11 @@
+arborium-lean 2.18.2, generated grammar/scanner/headers/highlights as packaged on crates.io.
+https://crates.io/crates/arborium-lean/2.18.2
+Upstream: https://github.com/Julian/tree-sitter-lean at efe6b87145608d12f5996bd7f0cf6095a0e82261 (MIT; LICENSE retained).
+Matches the grammar used by the current Rust reviewer. The reviewer-specific query only moves the variable catch-all before specific captures.
+
+The pinned upstream has Node and Rust bindings, but no Go module/binding.
+go generate restores the exact C sources from the release into ignored files.
+Archive SHA-256: 02e3e3af99597613fc97e63696fdec5020506ffd9849bc4172b8e01056afa936
+The URL, selected archive entries and original file SHA-256 hashes are pinned in
+../generate/sources.go. No Rust code is extracted or compiled.
+LICENSE, highlights.scm and the Go adapter remain in the repository.

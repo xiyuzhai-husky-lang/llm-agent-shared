@@ -1,0 +1,35 @@
+; Minimal local query for the installed css grammar.
+; No upstream highlights.scm was available in node_modules.
+"," @punctuation.delimiter
+";" @punctuation.delimiter
+"{" @punctuation.delimiter
+"}" @punctuation.delimiter
+"*" @operator
+"." @punctuation.delimiter
+"::" @punctuation.delimiter
+"[" @punctuation.delimiter
+"=" @operator
+"~=" @operator
+"^=" @operator
+"|=" @operator
+"*=" @operator
+"]" @punctuation.delimiter
+">" @operator
+"~" @operator
+"+" @operator
+"|" @operator
+"(" @punctuation.delimiter
+")" @punctuation.delimiter
+":" @punctuation.delimiter
+"and" @keyword
+"or" @keyword
+"not" @keyword
+"only" @keyword
+"selector" @keyword
+"-" @operator
+"/" @operator
+(js_comment) @comment
+(comment) @comment
+(property_name) @property
+(tag_name) @tag
+(class_name) @type
